@@ -13,14 +13,14 @@ public class InputManager : MonoBehaviour
     private LayerMask placementLayermask;
 
     [SerializeField]
-    private Collider2D islandCollider;
+    private IslandBuilding islandCollider;
 
     public event Action OnClicked, OnExit;
     public bool IsPointOverUI() => EventSystem.current.IsPointerOverGameObject();
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) & islandCollider.CanBuildHere(GetSelectedMapPosition()))
         {
             OnClicked?.Invoke();
             OnExit?.Invoke();

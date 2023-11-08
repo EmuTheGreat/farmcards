@@ -733,7 +733,7 @@ MonoBehaviour:
   placementLayermask:
     serializedVersion: 2
     m_Bits: 1
-  islandCollider: {fileID: 0}
+  islandCollider: {fileID: 2097168059}
 --- !u!4 &591357300
 Transform:
   m_ObjectHideFlags: 0
