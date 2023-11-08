@@ -27,6 +27,9 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private IslandBuilding islandBuilding;
 
+    [SerializeField]
+    private AudioSource sound;
+
     private void Start()
     {
         StopPlacement();
@@ -51,6 +54,7 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnExit += () => { Destroy(clickedButton); };
     }
 
+    //—юда ствить звук
     private void PlaceStructure()
     {
         if (inputManager.IsPointOverUI())
@@ -63,6 +67,7 @@ public class PlacementSystem : MonoBehaviour
         {
             GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab);
             newObject.transform.position = grid.CellToWorld(gridPosition);
+            sound.Play();
         }
     }
 
