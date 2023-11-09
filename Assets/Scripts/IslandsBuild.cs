@@ -9,7 +9,7 @@ public class IslandBuilding : MonoBehaviour
         islandCollider = GetComponent<Collider2D>();
     }
 
-    public bool CanBuildHere(Vector3 position)
+    public bool IsBuildOnIsland(Vector3 position)
     {
         if (islandCollider)
         {

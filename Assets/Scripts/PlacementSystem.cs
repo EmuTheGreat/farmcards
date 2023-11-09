@@ -36,15 +36,25 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private GameObject parentForObjects;
 
+    private GridData placementData;
+
+    private Renderer previewRenderer;
+
+    private List<GameObject> placedGameObject = new();
+
+    private GameObject clickedButton;
+
     private void Start()
     {
         StopPlacement();
+        placementData = new();
+        previewRenderer = cellIndicator.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     public void StartPlacement(int ID)
     {
         //Ссылка на нажатую кнопку
-        GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
+        clickedButton = EventSystem.current.currentSelectedGameObject;
         
         StopPlacement();
         selectedObjectIndex = dataBase.objectsData.FindIndex(data => data.ID == ID);
@@ -57,8 +67,6 @@ public class PlacementSystem : MonoBehaviour
         cellIndicator.SetActive(true);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
-            // Удаление кнопки
-        inputManager.OnEsq += () => { Destroy(clickedButton); };
     }
 
     private void PlaceStructure()
@@ -69,7 +77,13 @@ public class PlacementSystem : MonoBehaviour
         }
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        if (islandBuilding.CanBuildHere(mousePosition))
+        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+        if (!placementValidity) 
+        {
+            return;
+        }
+
+        if (islandBuilding.IsBuildOnIsland(mousePosition))
         {
             GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
             newObject.transform.position = grid.CellToWorld(gridPosition);
@@ -78,7 +92,21 @@ public class PlacementSystem : MonoBehaviour
                 source.clip = sound;
                 source.Play();
             }
+            placedGameObject.Add( newObject );
+            GridData selectedData = placementData;
+            selectedData.AddObjectAt(gridPosition, 
+                dataBase.objectsData[selectedObjectIndex].Size,
+                dataBase.objectsData[selectedObjectIndex].ID,
+                placedGameObject.Count - 1);
+            inputManager.OnEsq += () => Destroy(clickedButton);
+            inputManager.isPlaced = true;
         }
+    }
+
+    private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
+    {
+        GridData selectedData = placementData;
+        return selectedData.CanPlaceObjectAt(gridPosition, dataBase.objectsData[selectedObjectIndex].Size);
     }
 
     private void StopPlacement()
@@ -97,8 +125,14 @@ public class PlacementSystem : MonoBehaviour
             return;
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        if (islandBuilding.CanBuildHere(mousePosition)) { cellIndicator.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white; }
-        else { cellIndicator.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.red; }
+
+        // Смена цвета индикатора клетки
+        if (islandBuilding.IsBuildOnIsland(mousePosition) & CheckPlacementValidity(gridPosition, selectedObjectIndex))
+            previewRenderer.material.color = Color.white; 
+        else
+            previewRenderer.material.color = Color.red; 
+        
+        
         //mouseIndicator.transform.position = mousePosition;
         cellIndicator.transform.position = grid.CellToWorld(gridPosition);
     }

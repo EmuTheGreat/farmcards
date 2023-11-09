@@ -20,16 +20,23 @@ public class InputManager : MonoBehaviour
     public int currentCost;
 
     public event Action OnClicked, OnExit, OnEsq;
+    public bool isPlaced;
     public bool IsPointOverUI() => EventSystem.current.IsPointerOverGameObject();
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) & islandCollider.CanBuildHere(GetSelectedMapPosition()) & interfaceManager.balance - currentCost >= 0)
+        if (Input.GetMouseButtonDown(0) & islandCollider.IsBuildOnIsland(GetSelectedMapPosition()) & interfaceManager.balance - currentCost >= 0)
         {
-            interfaceManager.balance -= currentCost;           //Обновление баланса
             OnClicked?.Invoke();
             OnExit?.Invoke();
-            OnEsq?.Invoke();                                   //Отмена удаления выбранной карты
+            OnEsq?.Invoke();
+            OnEsq = null;
+
+            if (isPlaced)
+            {
+                interfaceManager.balance -= currentCost;
+                isPlaced = false;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

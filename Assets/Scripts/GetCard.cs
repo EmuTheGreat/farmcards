@@ -22,6 +22,6 @@ public class GetCard : MonoBehaviour
         //Debug.Log(parent.transform.childCount);
         //Debug.Log(cardPrefab);
         var newCard = Instantiate(cardPrefab, parent.transform);
-        newCard.onClick.AddListener(()=> placementSystem.StartPlacement(0));
+        newCard.onClick.AddListener(()=> placementSystem.StartPlacement(2));
     }
 }

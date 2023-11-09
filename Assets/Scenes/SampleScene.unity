@@ -726,6 +726,7 @@ MonoBehaviour:
   islandCollider: {fileID: 2097168059}
   interfaceManager: {fileID: 1559266858}
   currentCost: 0
+  isPlaced: 0
 --- !u!4 &591357300
 Transform:
   m_ObjectHideFlags: 0
@@ -938,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608422314987529841, guid: 9a485d42c8edc1043951c4a7769faa88, type: 3}
       propertyPath: m_Name
-      value: CellInicatorParent
+      value: CellIndicatorParent
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1593,7 +1594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4083710218276647903, guid: dfa7399394f61a144bf49a6438705435, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4083710218276647903, guid: dfa7399394f61a144bf49a6438705435, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1601,7 +1602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4661029404162597127, guid: dfa7399394f61a144bf49a6438705435, type: 3}
       propertyPath: objectIndex
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7230848217399494778, guid: dfa7399394f61a144bf49a6438705435, type: 3}
       propertyPath: m_Name
