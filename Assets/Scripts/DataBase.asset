@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: DataBase
   m_EditorClassIdentifier: 
   objectsData:
-  - <Name>k__BackingField: "\u041A\u0443\u043A\u0443\u0440\u0443\u0437\u0430"
+  - <Name>k__BackingField: 5
     <ID>k__BackingField: 0
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 5837591200865036453, guid: 919519eee3c7895448a79107b0c6c386, type: 3}
     <Sprite>k__BackingField: {fileID: 1518939347, guid: f07509a37e159064fa88705673a14d22, type: 3}
-  - <Name>k__BackingField: "\u0422\u043E\u043C\u0430\u0442"
+  - <Name>k__BackingField: 10
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 9113867764294389787, guid: 511d6fe13dcf3a84e94fd7dd36bb7976, type: 3}
