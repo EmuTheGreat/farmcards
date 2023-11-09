@@ -27,8 +27,11 @@ public class InputManager : MonoBehaviour
             OnExit = null;
         }
 
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //    OnExit?.Invoke();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnExit?.Invoke();
+            OnExit = null;
+        }
     }
 
     public Vector3 GetSelectedMapPosition()
