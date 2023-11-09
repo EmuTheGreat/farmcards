@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GetCard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    GameObject parent;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private ObjectsDatabaseSO dataBase;
+
+    [SerializeField]
+    private Button cardPrefab;
+
+    [SerializeField]
+    private PlacementSystem placementSystem;
+
+    public void CreateCard()
     {
-        
+        //Debug.Log(parent.transform.childCount);
+        //Debug.Log(cardPrefab);
+        var newCard = Instantiate(cardPrefab, parent.transform);
+        newCard.onClick.AddListener(()=> placementSystem.StartPlacement(0));
     }
 }
