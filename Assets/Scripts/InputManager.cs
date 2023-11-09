@@ -15,22 +15,27 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private IslandBuilding islandCollider;
 
-    public event Action OnClicked, OnExit;
+    [SerializeField]
+    private InterfaceManager interfaceManager;
+    public int currentCost;
+
+    public event Action OnClicked, OnExit, OnEsq;
     public bool IsPointOverUI() => EventSystem.current.IsPointerOverGameObject();
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) & islandCollider.CanBuildHere(GetSelectedMapPosition()))
+        if(Input.GetMouseButtonDown(0) & islandCollider.CanBuildHere(GetSelectedMapPosition()) & interfaceManager.balance - currentCost >= 0)
         {
+            interfaceManager.balance -= currentCost;           //Обновление баланса
             OnClicked?.Invoke();
             OnExit?.Invoke();
-            OnExit = null;
+            OnEsq?.Invoke();                                   //Отмена удаления выбранной карты
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             OnExit?.Invoke();
-            OnExit = null;
+            OnEsq = null;
         }
     }
 

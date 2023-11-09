@@ -33,6 +33,9 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private AudioSource source;
 
+    [SerializeField]
+    private GameObject parentForObjects;
+
     private void Start()
     {
         StopPlacement();
@@ -45,7 +48,8 @@ public class PlacementSystem : MonoBehaviour
         
         StopPlacement();
         selectedObjectIndex = dataBase.objectsData.FindIndex(data => data.ID == ID);
-        if(selectedObjectIndex < 0)
+        inputManager.currentCost = int.Parse(dataBase.objectsData[selectedObjectIndex].Name);
+        if (selectedObjectIndex < 0)
         {
             Debug.LogError($"No ID found {ID}");
         }
@@ -54,7 +58,7 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
             // Удаление кнопки
-        inputManager.OnExit += () => { Destroy(clickedButton); };
+        inputManager.OnEsq += () => { Destroy(clickedButton); };
     }
 
     private void PlaceStructure()
@@ -67,7 +71,7 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         if (islandBuilding.CanBuildHere(mousePosition))
         {
-            GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab);
+            GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
             newObject.transform.position = grid.CellToWorld(gridPosition);
             if(sound != null)
             {
@@ -86,12 +90,15 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnExit -= StopPlacement;
     }
 
+
     private void Update()
     {
         if(selectedObjectIndex < 0) 
             return;
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+        if (islandBuilding.CanBuildHere(mousePosition)) { cellIndicator.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white; }
+        else { cellIndicator.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = Color.red; }
         //mouseIndicator.transform.position = mousePosition;
         cellIndicator.transform.position = grid.CellToWorld(gridPosition);
     }
