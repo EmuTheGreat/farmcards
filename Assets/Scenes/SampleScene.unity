@@ -1083,14 +1083,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1623566724044961405, guid: 346ff9cfd2ac03342bf7ff9f0ed0910f, type: 3}
-      propertyPath: m_Size.y
-      value: 0.89878076
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623566724044961405, guid: 346ff9cfd2ac03342bf7ff9f0ed0910f, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.105691046
-      objectReference: {fileID: 0}
     - target: {fileID: 7302213353442712407, guid: 346ff9cfd2ac03342bf7ff9f0ed0910f, type: 3}
       propertyPath: m_Name
       value: Island

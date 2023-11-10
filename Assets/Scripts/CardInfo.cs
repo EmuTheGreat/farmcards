@@ -6,11 +6,8 @@ using TMPro;
 
 public class CardInfo : MonoBehaviour
 {
-    [SerializeField]
-    private int objectIndex;
-    [SerializeField]
-    private ObjectsDatabaseSO dataBase;
-
+    public int objectIndex;
+    public ObjectsDatabaseSO dataBase;
     public Image Logo;
     public TextMeshProUGUI Name;
 
