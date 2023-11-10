@@ -25,10 +25,9 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) & islandCollider.IsBuildOnIsland(GetSelectedMapPosition()) & interfaceManager.balance - currentCost >= 0)
+        if (Input.GetMouseButtonDown(0) & islandCollider.IsBuildOnIsland(new List<Vector2>() { GetSelectedMapPosition() })& interfaceManager.balance - currentCost >= 0)
         {
             OnClicked?.Invoke();
-            OnExit?.Invoke();
             OnEsq?.Invoke();
             OnEsq = null;
 
@@ -36,6 +35,7 @@ public class InputManager : MonoBehaviour
             {
                 interfaceManager.balance -= currentCost;
                 isPlaced = false;
+                OnExit?.Invoke();
             }
         }
 

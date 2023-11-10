@@ -28,8 +28,8 @@ MonoBehaviour:
     <Size>k__BackingField: {x: 2, y: 2}
     <Prefab>k__BackingField: {fileID: 5837591200865036453, guid: 919519eee3c7895448a79107b0c6c386, type: 3}
     <Sprite>k__BackingField: {fileID: 0}
-  - <Name>k__BackingField: 
-    <ID>k__BackingField: 0
-    <Size>k__BackingField: {x: 0, y: 0}
+  - <Name>k__BackingField: Border
+    <ID>k__BackingField: 3
+    <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 0}
     <Sprite>k__BackingField: {fileID: 0}

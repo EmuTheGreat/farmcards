@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -83,7 +85,7 @@ public class PlacementSystem : MonoBehaviour
             return;
         }
 
-        if (islandBuilding.IsBuildOnIsland(mousePosition))
+        if (CheckBuild())
         {
             GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
             newObject.transform.position = grid.CellToWorld(gridPosition);
@@ -118,6 +120,15 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnExit -= StopPlacement;
     }
 
+    private bool CheckBuild()
+    {
+        Vector3 mousePosition = inputManager.GetSelectedMapPosition();
+        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+        var positions = placementData.CalculatePositions(gridPosition, dataBase.objectsData[selectedObjectIndex].Size);
+        var pos = positions.Select(x => new Vector2(x.x, x.y)).ToList();
+        return islandBuilding.IsBuildOnIsland(new List<Vector2>(pos) { mousePosition }) & CheckPlacementValidity(gridPosition, selectedObjectIndex);
+    }
+
 
     private void Update()
     {
@@ -125,14 +136,11 @@ public class PlacementSystem : MonoBehaviour
             return;
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-
         // Смена цвета индикатора клетки
-        if (islandBuilding.IsBuildOnIsland(mousePosition) & CheckPlacementValidity(gridPosition, selectedObjectIndex))
+        if (CheckBuild())
             previewRenderer.material.color = Color.white; 
         else
-            previewRenderer.material.color = Color.red; 
-        
-        
+            previewRenderer.material.color = Color.red;
         //mouseIndicator.transform.position = mousePosition;
         cellIndicator.transform.position = grid.CellToWorld(gridPosition);
     }
