@@ -129,7 +129,7 @@ public class PlacementSystem : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(selectedObjectIndex < 0) 
             return;

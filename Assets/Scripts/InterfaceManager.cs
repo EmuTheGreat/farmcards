@@ -9,7 +9,7 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI balanceText;
 
-    private void Update()
+    private void FixedUpdate()
     {
         balanceText.text = balance.ToString();
     }

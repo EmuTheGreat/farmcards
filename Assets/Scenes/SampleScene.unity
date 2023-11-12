@@ -719,6 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a911fb0f54646b4f9ec81c3634a296e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawObjects: {fileID: 1583838452}
   sceneCamera: {fileID: 519420031}
   placementLayermask:
     serializedVersion: 2
@@ -1736,6 +1737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1583838451}
+  - component: {fileID: 1583838452}
   m_Layer: 0
   m_Name: ObjectsList
   m_TagString: Untagged
@@ -1758,6 +1760,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1583838452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583838450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2816f2a97ad1a42b882a67d2859051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1583838450}
 --- !u!1 &1615159169
 GameObject:
   m_ObjectHideFlags: 0

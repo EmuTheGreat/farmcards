@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
     [SerializeField]
+    private DrawObjects drawObjects;
+
+    [SerializeField]
     private Camera sceneCamera;
 
     [SerializeField]
@@ -28,6 +31,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) & islandCollider.IsBuildOnIsland(new List<Vector2>() { GetSelectedMapPosition() })& interfaceManager.balance - currentCost >= 0)
         {
             OnClicked?.Invoke();
+            drawObjects.UpdateDrawObjects();
             OnEsq?.Invoke();
             OnEsq = null;
 
