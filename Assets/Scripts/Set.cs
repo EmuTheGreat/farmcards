@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +18,7 @@ public class Settings : MonoBehaviour
         resolutions = Screen.resolutions;
         int currentResolutionIndex = 0;
 
-        for (int i = 0; i < resolutions.Length; i++)
+        for (int i = 1; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRateRatio + "Hz";
             options.Add(option);

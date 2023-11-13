@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlacementSystem : MonoBehaviour
+public class PlacementSystem : Sounds
 {
     [SerializeField]
     private InputManager inputManager;
@@ -27,12 +27,6 @@ public class PlacementSystem : MonoBehaviour
 
     [SerializeField]
     private IslandBuilding islandBuilding;
-
-    [SerializeField]
-    private AudioClip sound;
-
-    [SerializeField]
-    private AudioSource source;
 
     [SerializeField]
     private GameObject parentForObjects;
@@ -88,11 +82,7 @@ public class PlacementSystem : MonoBehaviour
         {
             GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
             newObject.transform.position = grid.CellToWorld(gridPosition);
-            if(sound != null)
-            {
-                source.clip = sound;
-                source.Play();
-            }
+            PlaySound(sounds[0]);
             placedGameObject.Add( newObject );
             GridData selectedData = placementData;
             selectedData.AddObjectAt(gridPosition, 
