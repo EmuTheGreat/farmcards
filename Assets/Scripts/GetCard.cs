@@ -20,15 +20,15 @@ public class GetCard : MonoBehaviour
 
     public void CreateCard()
     {
-        int index = 1;
+        int index = 2;
         CardInfo cardInfo = cardPrefab.GetComponent<CardInfo>(); 
         
-        if (cardInfo != null)
+        if (parent.transform.childCount < 5 & cardInfo != null)
         {
             cardInfo.objectIndex = index;
+            cardInfo.GetComponent<Image>().sprite = dataBase.objectsData[index].Background; //Замена заднего фона карточки
+            Button newCard = Instantiate(cardPrefab, parent.transform);
+            newCard.onClick.AddListener(() => placementSystem.StartPlacement(cardInfo.objectIndex));
         }
-
-        Button newCard = Instantiate(cardPrefab, parent.transform);
-        newCard.onClick.AddListener(()=> placementSystem.StartPlacement(cardInfo.objectIndex));
     }
 }

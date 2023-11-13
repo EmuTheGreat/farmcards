@@ -26,4 +26,7 @@ public class ObjectData
 
     [field: SerializeField]
     public Sprite Sprite { get; private set; }
+
+    [field: SerializeField]
+    public Sprite Background {  get; private set; }
 }

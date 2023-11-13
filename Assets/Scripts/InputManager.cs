@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
     [SerializeField]
-    private DrawObjects drawObjects;
+    private ObjectsManager drawObjects;
 
     [SerializeField]
     private Camera sceneCamera;
