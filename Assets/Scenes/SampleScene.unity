@@ -2421,9 +2421,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balanceText: {fileID: 1762403879}
   balance: 50
-  dayText: {fileID: 0}
+  dayText: {fileID: 859210893}
   day: 0
-  waterText: {fileID: 0}
+  waterText: {fileID: 65525640}
   water: 0
 --- !u!1 &1583838450
 GameObject:
