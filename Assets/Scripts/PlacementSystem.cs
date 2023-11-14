@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -38,12 +39,16 @@ public class PlacementSystem : Sounds
     private List<GameObject> placedGameObject = new();
 
     private GameObject clickedButton;
+    public string volumeParameter = "MasterVolume";
+    public AudioMixer audioMixer;
 
     private void Start()
     {
         StopPlacement();
         placementData = new();
         previewRenderer = cellIndicator.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        var volumeValue = PlayerPrefs.GetFloat(volumeParameter, volumeParameter == "CardVol" ? 0f : -30f);
+        audioMixer.SetFloat(volumeParameter, volumeValue);
     }
 
     public void StartPlacement(int ID)

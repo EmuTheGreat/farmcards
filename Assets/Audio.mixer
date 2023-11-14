@@ -18,10 +18,13 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 5b53e554b35b23142b56fd2fa0e0391b
     name: CardVol
+  - guid: 3e346cdc41b43da47b120e59fe36e902
+    name: FonVal
   m_AudioMixerGroupViews:
   - guids:
     - 8fa84996e6aba6b448a7d4b3d4ce30e5
     - 4acd01676c71b09408472604915d31ef
+    - 88c147fcfa2e99947b688f5aad5ee660
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -36,6 +39,7 @@ AudioMixerGroupController:
   m_GroupID: 8fa84996e6aba6b448a7d4b3d4ce30e5
   m_Children:
   - {fileID: 4104691945296189392}
+  - {fileID: 1298183427441497469}
   m_Volume: 513b4341202aacb44813d8a18c5bb15e
   m_Pitch: 68e8cf0d7a4513e42bc7f12862be3485
   m_Send: 00000000000000000000000000000000
@@ -69,8 +73,42 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: a77a90c21aa31184590b27e0fe622d94
   m_FloatValues:
-    5b53e554b35b23142b56fd2fa0e0391b: 20
+    5b53e554b35b23142b56fd2fa0e0391b: 0.02557829
+    3e346cdc41b43da47b120e59fe36e902: -3.5922954
   m_TransitionOverrides: {}
+--- !u!243 &1298183427441497469
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FonSound
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 88c147fcfa2e99947b688f5aad5ee660
+  m_Children: []
+  m_Volume: 3e346cdc41b43da47b120e59fe36e902
+  m_Pitch: 4eb31d4cacfc7ed48ad732767ad71a0f
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 2822900092421525600}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &2822900092421525600
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9779f184d8ab238409724413632d2c69
+  m_EffectName: Attenuation
+  m_MixLevel: 6257a0d1a70bfad47bfef2e4445b269a
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &4104691945296189392
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
