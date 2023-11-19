@@ -25,7 +25,6 @@ public class GetCard : MonoBehaviour
         var r = new System.Random();
         int rndIndex = r.Next(indexList.Count);
         int index = indexList[rndIndex];
-        //CardInfo cardInfo = cardPrefab.GetComponent<CardInfo>();
 
         if (parent.transform.childCount < 5)
         {
