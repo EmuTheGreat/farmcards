@@ -18,16 +18,21 @@ public class GetCard : MonoBehaviour
     [SerializeField]
     private PlacementSystem placementSystem;
 
+    private List<int> indexList = new List<int>() { 1, 2 };
+
     public void CreateCard()
     {
-        int index = 2;
-        CardInfo cardInfo = cardPrefab.GetComponent<CardInfo>(); 
-        
-        if (parent.transform.childCount < 5 & cardInfo != null)
+        var r = new System.Random();
+        int rndIndex = r.Next(indexList.Count);
+        int index = indexList[rndIndex];
+        //CardInfo cardInfo = cardPrefab.GetComponent<CardInfo>();
+
+        if (parent.transform.childCount < 5)
         {
+            Button newCard = Instantiate(cardPrefab, parent.transform);
+            var cardInfo = newCard.GetComponent<CardInfo>();
             cardInfo.objectIndex = index;
             cardInfo.GetComponent<Image>().sprite = dataBase.objectsData[index].Background; //Замена заднего фона карточки
-            Button newCard = Instantiate(cardPrefab, parent.transform);
             newCard.onClick.AddListener(() => placementSystem.StartPlacement(cardInfo.objectIndex));
         }
     }

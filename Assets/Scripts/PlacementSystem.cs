@@ -8,7 +8,7 @@ using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlacementSystem : Sounds
+public class PlacementSystem : MonoBehaviour
 {
     [SerializeField]
     private InputManager inputManager;
@@ -41,6 +41,8 @@ public class PlacementSystem : Sounds
     private GameObject clickedButton;
     public string volumeParameter = "MasterVolume";
     public AudioMixer audioMixer;
+    public AudioClip sound;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -82,12 +84,12 @@ public class PlacementSystem : Sounds
         {
             return;
         }
-
         if (CheckBuild())
         {
             GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
             newObject.transform.position = grid.CellToWorld(gridPosition);
-            PlaySound(sounds[0]);
+
+            audioSource.PlayOneShot(sound);
             placedGameObject.Add( newObject );
             GridData selectedData = placementData;
             selectedData.AddObjectAt(gridPosition, 

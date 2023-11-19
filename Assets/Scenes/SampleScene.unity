@@ -1882,8 +1882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db532356a8c8964981a7028cff15d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - {fileID: 8300000, guid: 1ff74fa1c87f52241939ba16d40c0a0b, type: 3}
   inputManager: {fileID: 591357299}
   mouseIndicator: {fileID: 0}
   cellIndicator: {fileID: 677314119}
@@ -1894,6 +1892,8 @@ MonoBehaviour:
   parentForObjects: {fileID: 1583838450}
   volumeParameter: CardVol
   audioMixer: {fileID: 24100000, guid: d241271f0c9fdf5449acb8adb5b65104, type: 2}
+  sound: {fileID: 8300000, guid: 1ff74fa1c87f52241939ba16d40c0a0b, type: 3}
+  audioSource: {fileID: 953875268}
 --- !u!82 &953875268
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3550,7 +3550,7 @@ AudioSource:
   m_GameObject: {fileID: 1769961769}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 1298183427441497469, guid: d241271f0c9fdf5449acb8adb5b65104, type: 2}
+  OutputAudioMixerGroup: {fileID: 4104691945296189392, guid: d241271f0c9fdf5449acb8adb5b65104, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7301a44539d96324496fc6a6558da747, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.165
