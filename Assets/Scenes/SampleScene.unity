@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 157831205}
   - component: {fileID: 157831204}
   - component: {fileID: 157831203}
+  - component: {fileID: 157831206}
   m_Layer: 5
   m_Name: BackToMenuButton
   m_TagString: Untagged
@@ -611,6 +612,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 157831203}
   clickSource: {fileID: 8300000, guid: 946b470d775ccbb43ab3c7da5f339885, type: 3}
+--- !u!114 &157831206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157831198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e915ee56079640a52620b55a12e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: CardVol
+  audioMixer: {fileID: 24100000, guid: d241271f0c9fdf5449acb8adb5b65104, type: 2}
 --- !u!224 &262741855 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2585602265820413137, guid: dfa7399394f61a144bf49a6438705435, type: 3}
@@ -1243,6 +1258,7 @@ GameObject:
   - component: {fileID: 642839321}
   - component: {fileID: 642839320}
   - component: {fileID: 642839319}
+  - component: {fileID: 642839322}
   m_Layer: 5
   m_Name: NextTurn
   m_TagString: Untagged
@@ -1503,6 +1519,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 642839320}
   clickSource: {fileID: 8300000, guid: 946b470d775ccbb43ab3c7da5f339885, type: 3}
+--- !u!114 &642839322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642839314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e915ee56079640a52620b55a12e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: CardVol
+  audioMixer: {fileID: 24100000, guid: d241271f0c9fdf5449acb8adb5b65104, type: 2}
 --- !u!1 &677314119 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7608422314987529841, guid: 9a485d42c8edc1043951c4a7769faa88, type: 3}
@@ -2200,6 +2230,7 @@ GameObject:
   - component: {fileID: 1010525513}
   - component: {fileID: 1010525512}
   - component: {fileID: 1010525511}
+  - component: {fileID: 1010525514}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -2459,6 +2490,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1010525514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010525506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e915ee56079640a52620b55a12e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: CardVol
+  audioMixer: {fileID: 24100000, guid: d241271f0c9fdf5449acb8adb5b65104, type: 2}
 --- !u!1 &1163727158
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,6 +3365,7 @@ GameObject:
   - component: {fileID: 1734654106}
   - component: {fileID: 1734654105}
   - component: {fileID: 1734654104}
+  - component: {fileID: 1734654107}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -3579,6 +3625,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1734654105}
   clickSource: {fileID: 8300000, guid: 946b470d775ccbb43ab3c7da5f339885, type: 3}
+--- !u!114 &1734654107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734654099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51e915ee56079640a52620b55a12e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: CardVol
+  audioMixer: {fileID: 24100000, guid: d241271f0c9fdf5449acb8adb5b65104, type: 2}
 --- !u!1 &1762403877
 GameObject:
   m_ObjectHideFlags: 0
