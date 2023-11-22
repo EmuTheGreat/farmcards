@@ -10,7 +10,9 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var volumeValue = PlayerPrefs.GetFloat(volumeParameter, volumeParameter == "CardVol" ? 0f : -30f);
+        var volumeValue = PlayerPrefs.GetFloat(volumeParameter, volumeParameter == "FonVal" ? 0f : -80f);
+        audioMixer.SetFloat(volumeParameter, volumeValue);
+        var volumeValues = PlayerPrefs.GetFloat(volumeParameter, volumeParameter == "CardVol" ? 0f : -80f);
         audioMixer.SetFloat(volumeParameter, volumeValue);
     }
 }
