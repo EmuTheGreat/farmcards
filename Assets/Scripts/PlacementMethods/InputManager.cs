@@ -19,6 +19,9 @@ public class InputManager : MonoBehaviour
     private IslandBuilding islandCollider;
 
     [SerializeField]
+    private IslandsColliders colliders;
+
+    [SerializeField]
     private InterfaceManager interfaceManager;
     public int currentCost;
 
@@ -28,7 +31,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) & islandCollider.IsBuildOnIsland(new List<Vector2>() { GetSelectedMapPosition() })& interfaceManager.balance - currentCost >= 0)
+        if (Input.GetMouseButtonDown(0) & colliders.CheckIslandBuild(new List<Vector2>() { GetSelectedMapPosition() }) & interfaceManager.balance - currentCost >= 0)
         {
             OnClicked?.Invoke();
             drawObjects.UpdateDrawObjects();

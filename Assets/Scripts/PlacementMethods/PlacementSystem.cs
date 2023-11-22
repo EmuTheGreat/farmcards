@@ -14,7 +14,7 @@ public class PlacementSystem : MonoBehaviour
     private InputManager inputManager;
 
     [SerializeField]
-    private GameObject mouseIndicator, cellIndicator;
+    private GameObject cellIndicator;
 
     [SerializeField]
     private Grid grid;
@@ -27,10 +27,10 @@ public class PlacementSystem : MonoBehaviour
     private GameObject gridVisualisation;
 
     [SerializeField]
-    private IslandBuilding islandBuilding;
+    private GameObject parentForObjects;
 
     [SerializeField]
-    private GameObject parentForObjects;
+    private IslandsColliders colliders;
 
     private GridData placementData;
 
@@ -39,9 +39,13 @@ public class PlacementSystem : MonoBehaviour
     private List<GameObject> placedGameObject = new();
 
     private GameObject clickedButton;
+
     public string volumeParameter = "MasterVolume";
+
     public AudioMixer audioMixer;
+
     public AudioClip sound;
+
     public AudioSource audioSource;
 
     private void Start()
@@ -55,16 +59,19 @@ public class PlacementSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
-        //—сылка на нажатую кнопку
+
         clickedButton = EventSystem.current.currentSelectedGameObject;
         
         StopPlacement();
+
         selectedObjectIndex = dataBase.objectsData.FindIndex(data => data.ID == ID);
         inputManager.currentCost = int.Parse(dataBase.objectsData[selectedObjectIndex].Name);
+
         if (selectedObjectIndex < 0)
         {
             Debug.LogError($"No ID found {ID}");
         }
+
         gridVisualisation.SetActive(true);
         cellIndicator.SetActive(true);
         inputManager.OnClicked += PlaceStructure;
@@ -73,17 +80,12 @@ public class PlacementSystem : MonoBehaviour
 
     private void PlaceStructure()
     {
-        if (inputManager.IsPointOverUI())
+        Vector3Int gridPosition = GetGridPosition();
+        if (inputManager.IsPointOverUI() & !CheckPlacementValidity(gridPosition, selectedObjectIndex))
         {
             return;
         }
-        Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-        if (!placementValidity) 
-        {
-            return;
-        }
+
         if (CheckBuild())
         {
             GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
@@ -110,34 +112,50 @@ public class PlacementSystem : MonoBehaviour
     private void StopPlacement()
     {
         selectedObjectIndex = -1;
+
         gridVisualisation.SetActive(false);
         cellIndicator.SetActive(false);
+
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
     }
 
     private bool CheckBuild()
     {
-        Vector3 mousePosition = inputManager.GetSelectedMapPosition();
+        Vector3 mousePosition = GetMousePositon();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        var positions = placementData.CalculatePositions(gridPosition, dataBase.objectsData[selectedObjectIndex].Size);
-        var pos = positions.Select(x => new Vector2(x.x, x.y)).ToList();
-        return islandBuilding.IsBuildOnIsland(new List<Vector2>(pos) { mousePosition }) & CheckPlacementValidity(gridPosition, selectedObjectIndex);
+
+        var pos = placementData
+            .CalculatePositions(gridPosition, dataBase.objectsData[selectedObjectIndex].Size)
+            .Select(x => new Vector2(x.x, x.y))
+            .ToList();
+
+        return colliders.CheckIslandBuild(new List<Vector2>(pos) { mousePosition }) & CheckPlacementValidity(gridPosition, selectedObjectIndex);
     }
 
 
     private void FixedUpdate()
     {
-        if(selectedObjectIndex < 0) 
+        if (selectedObjectIndex < 0)
+        {
             return;
-        Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        // —мена цвета индикатора клетки
+        }
+
+        Vector3Int gridPosition = GetGridPosition();
+
         if (CheckBuild())
+        {
             previewRenderer.material.color = Color.white; 
+        }
+
         else
+        {
             previewRenderer.material.color = Color.red;
-        //mouseIndicator.transform.position = mousePosition;
+        }
+
         cellIndicator.transform.position = grid.CellToWorld(gridPosition);
     }
+
+    private Vector3Int GetGridPosition() => grid.WorldToCell(GetMousePositon());
+    private Vector3 GetMousePositon() => inputManager.GetSelectedMapPosition();
 }
