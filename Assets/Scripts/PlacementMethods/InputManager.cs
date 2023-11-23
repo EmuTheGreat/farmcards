@@ -41,6 +41,7 @@ public class InputManager : MonoBehaviour
             if (isPlaced)
             {
                 interfaceManager.balance -= currentCost;
+                interfaceManager.water += currentCost;
                 isPlaced = false;
                 OnExit?.Invoke();
             }
@@ -59,5 +60,18 @@ public class InputManager : MonoBehaviour
         Vector3 worldPosition = sceneCamera.ScreenToWorldPoint(mousePos);
         worldPosition.z = 0f;
         return worldPosition;
+    }
+
+    public void Save()
+    {
+        SaveSystem.Save(interfaceManager);
+    }
+
+    public void Load()
+    {
+        InterfaceData data = SaveSystem.Load();
+        interfaceManager.balance = data.Balance;
+        interfaceManager.day = data.Day;
+        interfaceManager.water = data.Water;
     }
 }
