@@ -6,6 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
     public Transform inventoryPanel;
     public List<InventorySlot> inventorySlots = new List<InventorySlot>();
+    public ItemScriptableObject itemScriptableObject;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class InventoryManager : MonoBehaviour
             {
                 slot.item = item;
                 slot.amount += 1;
+                slot.isEmpty = false;
                 return;
             }
         }

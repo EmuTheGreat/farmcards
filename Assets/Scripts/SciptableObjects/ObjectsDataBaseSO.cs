@@ -29,4 +29,7 @@ public class ObjectData
 
     [field: SerializeField]
     public Sprite Background {  get; private set; }
+
+    [field: SerializeField]
+    public ItemScriptableObject item { get; private set; }
 }

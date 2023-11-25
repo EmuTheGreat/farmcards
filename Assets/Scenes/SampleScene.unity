@@ -11146,6 +11146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 117514635}
   inventorySlots: []
+  itemScriptableObject: {fileID: 11400000, guid: 0d4335acff5986043a685bc01bf15bc7, type: 2}
 --- !u!114 &1908050911
 MonoBehaviour:
   m_ObjectHideFlags: 0
