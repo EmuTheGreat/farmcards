@@ -17,6 +17,9 @@ public class ObjectData
 
     [field: SerializeField]
     public int ID { get; private set; }
+    
+    [field: SerializeField]
+    public int Cost { get; private set; }
 
     [field: SerializeField]
     public Vector2Int Size { get; private set; } = Vector2Int.one;
@@ -31,5 +34,5 @@ public class ObjectData
     public Sprite Background {  get; private set; }
 
     [field: SerializeField]
-    public ItemScriptableObject item { get; private set; }
+    public ItemScriptableObject Item { get; private set; }
 }

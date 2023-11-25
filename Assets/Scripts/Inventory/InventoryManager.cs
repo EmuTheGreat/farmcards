@@ -14,6 +14,12 @@ public class InventoryManager : MonoBehaviour
         {
             inventorySlots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
         }
+
+        AddItem(itemScriptableObject);
+        AddItem(itemScriptableObject);
+        AddItem(itemScriptableObject);
+        AddItem(itemScriptableObject);
+        AddItem(itemScriptableObject);
     }
 
     public void AddItem(ItemScriptableObject item)
@@ -23,6 +29,7 @@ public class InventoryManager : MonoBehaviour
             if (item == slot.item)
             {
                 slot.amount += 1;
+                slot.textItemAmount.text = slot.amount.ToString();
                 return;
             }
         }
@@ -33,6 +40,8 @@ public class InventoryManager : MonoBehaviour
                 slot.item = item;
                 slot.amount += 1;
                 slot.isEmpty = false;
+                slot.textItemAmount.text = slot.amount.ToString();
+                slot.SetIcon(item.sprite);
                 return;
             }
         }

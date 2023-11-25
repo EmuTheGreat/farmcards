@@ -7,5 +7,6 @@ using UnityEngine;
 public class ItemScriptableObject : ScriptableObject
 {
     public string itemName;
-    public int maxAmount;
+    public Sprite sprite;
+    public int Id;
 }

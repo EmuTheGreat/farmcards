@@ -61,11 +61,11 @@ public class PlacementSystem : MonoBehaviour
     {
 
         clickedButton = EventSystem.current.currentSelectedGameObject;
-        
+
         StopPlacement();
 
         selectedObjectIndex = dataBase.objectsData.FindIndex(data => data.ID == ID);
-        inputManager.currentCost = int.Parse(dataBase.objectsData[selectedObjectIndex].Name);
+        inputManager.currentCost = dataBase.objectsData[selectedObjectIndex].Cost;
 
         if (selectedObjectIndex < 0)
         {
@@ -92,9 +92,9 @@ public class PlacementSystem : MonoBehaviour
             newObject.transform.position = grid.CellToWorld(gridPosition);
 
             audioSource.PlayOneShot(sound);
-            placedGameObject.Add( newObject );
+            placedGameObject.Add(newObject);
             GridData selectedData = placementData;
-            selectedData.AddObjectAt(gridPosition, 
+            selectedData.AddObjectAt(gridPosition,
                 dataBase.objectsData[selectedObjectIndex].Size,
                 dataBase.objectsData[selectedObjectIndex].ID,
                 placedGameObject.Count - 1);
@@ -145,7 +145,7 @@ public class PlacementSystem : MonoBehaviour
 
         if (CheckBuild())
         {
-            previewRenderer.material.color = Color.white; 
+            previewRenderer.material.color = Color.white;
         }
 
         else
