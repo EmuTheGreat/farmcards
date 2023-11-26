@@ -32,6 +32,9 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private IslandsColliders colliders;
 
+    [SerializeField]
+    private IslandsPlacementSystem islandsPlacementSystem;
+
     private GridData placementData;
 
     private Renderer previewRenderer;
@@ -59,7 +62,7 @@ public class PlacementSystem : MonoBehaviour
 
     public void StartPlacement(int ID)
     {
-
+        islandsPlacementSystem.StopPlacement();
         clickedButton = EventSystem.current.currentSelectedGameObject;
 
         StopPlacement();
@@ -109,7 +112,7 @@ public class PlacementSystem : MonoBehaviour
         return selectedData.CanPlaceObjectAt(gridPosition, dataBase.objectsData[selectedObjectIndex].Size);
     }
 
-    private void StopPlacement()
+    public void StopPlacement()
     {
         selectedObjectIndex = -1;
 

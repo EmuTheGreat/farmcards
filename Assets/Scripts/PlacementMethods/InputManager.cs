@@ -31,7 +31,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) & colliders.CheckIslandBuild(new List<Vector2>() { GetSelectedMapPosition() }) & interfaceManager.balance - currentCost >= 0)
+        if (!IsPointOverUI() & Input.GetMouseButtonDown(0) & colliders.CheckIslandBuild(new List<Vector2>() { GetSelectedMapPosition() }) & interfaceManager.balance - currentCost >= 0)
         {
             OnClicked?.Invoke();
             drawObjects.UpdateDrawObjects();
@@ -49,16 +49,21 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OnExit?.Invoke();
-            OnEsq = null;
+            CancelPlace();
         }
+    }
+
+    public void CancelPlace()
+    {
+        OnExit?.Invoke();
+        OnEsq = null;
     }
 
     public Vector3 GetSelectedMapPosition()
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 worldPosition = sceneCamera.ScreenToWorldPoint(mousePos);
-        worldPosition.z = 0f;
+        worldPosition.z = -1f;
         return worldPosition;
     }
 

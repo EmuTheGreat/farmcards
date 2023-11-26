@@ -20,7 +20,7 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 5837591200865036453, guid: 919519eee3c7895448a79107b0c6c386, type: 3}
     <Sprite>k__BackingField: {fileID: 1518939347, guid: f07509a37e159064fa88705673a14d22, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: de83ececde91f5848a38ddedbbd7d0f3, type: 3}
-    <Item>k__BackingField: {fileID: 0}
+    <Item>k__BackingField: {fileID: 11400000, guid: 0d4335acff5986043a685bc01bf15bc7, type: 2}
   - <Name>k__BackingField: Tomato
     <ID>k__BackingField: 1
     <Cost>k__BackingField: 10
@@ -28,7 +28,7 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 9113867764294389787, guid: 511d6fe13dcf3a84e94fd7dd36bb7976, type: 3}
     <Sprite>k__BackingField: {fileID: -1714256596, guid: f07509a37e159064fa88705673a14d22, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: de83ececde91f5848a38ddedbbd7d0f3, type: 3}
-    <Item>k__BackingField: {fileID: 0}
+    <Item>k__BackingField: {fileID: 11400000, guid: d9e12c5dc3c72404d8970466cda4f576, type: 2}
   - <Name>k__BackingField: Fence
     <ID>k__BackingField: 2
     <Cost>k__BackingField: 20

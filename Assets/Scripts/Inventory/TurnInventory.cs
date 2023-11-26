@@ -7,6 +7,10 @@ public class TurnInventory : MonoBehaviour
     private bool buttonClicked = false;
     [SerializeField]
     private GameObject inventory;
+    [SerializeField]
+    private InputManager inputManager;
+    [SerializeField]
+    private IslandsPlacementSystem islandPlacement;
 
     private void Start()
     {
@@ -15,6 +19,8 @@ public class TurnInventory : MonoBehaviour
 
     public void ShowInventory()
     {
+        islandPlacement.StopPlacement();
+        inputManager.CancelPlace();
         buttonClicked = !buttonClicked;
         inventory.SetActive(buttonClicked);
     }

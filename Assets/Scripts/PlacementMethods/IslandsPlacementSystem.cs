@@ -12,6 +12,9 @@ public class IslandsPlacementSystem : MonoBehaviour
     private InputManager inputManager;
 
     [SerializeField]
+    private PlacementSystem placementSystem;
+
+    [SerializeField]
     private GameObject cellIndicator;
 
     [SerializeField]
@@ -32,6 +35,7 @@ public class IslandsPlacementSystem : MonoBehaviour
 
     public void StartPlacement()
     {
+        placementSystem.StopPlacement();
         placementFlag = !placementFlag;
         if (placementFlag)
         {
@@ -43,6 +47,15 @@ public class IslandsPlacementSystem : MonoBehaviour
         }
     }
 
+    public void StopPlacement()
+    {
+        if (placementFlag)
+        {
+            placementFlag = !placementFlag;
+            cellIndicator.SetActive(placementFlag);
+        }
+    }
+
     private void Update()
     {
         if (placementFlag)
@@ -50,14 +63,20 @@ public class IslandsPlacementSystem : MonoBehaviour
             var gridPosition = GetGridPosition();
             cellIndicator.transform.position = islandsGrid.CellToWorld(gridPosition);
 
-            if (Input.GetMouseButtonDown(0))
+            if (!inputManager.IsPointOverUI() & Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Есть нажатие!");
+                //Debug.Log("Есть нажатие!");
                 GameObject newObject = Instantiate(islandPrefab, islandsList.transform);
                 Vector3 position = islandsGrid.CellToWorld(gridPosition);
                 position.x = (float)Math.Round(position.x + 2.8799f);
-                position.y = (float)Math.Round(position.y + 2.8799f) - 0.5f;
+                position.y = position.y + 2.8799f > 0 ? (float)Math.Round(position.y + 2.8799f): (float)Math.Ceiling(position.y + 2.8799f);
+                position.y = position.y - 0.5f;
                 newObject.transform.position = position;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                StopPlacement();
             }
         }
     }
