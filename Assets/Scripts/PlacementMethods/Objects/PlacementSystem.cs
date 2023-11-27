@@ -35,7 +35,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private IslandsPlacementSystem islandsPlacementSystem;
 
-    private GridData placementData;
+    public GridData placementData;
 
     private Renderer previewRenderer;
 

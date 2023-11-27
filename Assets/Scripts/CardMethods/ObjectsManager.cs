@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 public class ObjectsManager : MonoBehaviour
@@ -10,6 +12,8 @@ public class ObjectsManager : MonoBehaviour
     private InventoryManager inventoryManager;
     [SerializeField]
     private ObjectsDatabaseSO dataBase;
+    [SerializeField]
+    private PlacementSystem placementSystem;
 
     public void UpdateDrawObjects()
     {
@@ -32,13 +36,11 @@ public class ObjectsManager : MonoBehaviour
 
     public void Harvest()
     {
-        for (int i = 0; i < parent.transform.childCount; i++)
+        foreach(PlacementData placementObject in placementSystem.placementData.placedObjects.Values)
         {
-            var id = parent.transform.GetChild(i).GetComponent<ObjectItem>().id;
-            var index = dataBase.objectsData.FindIndex(x => x.ID == id);
-            if (dataBase.objectsData[index].Item != null)
+            if (dataBase.objectsData[placementObject.ID].Item != null)
             {
-                inventoryManager.AddItem(dataBase.objectsData[index].Item);
+                inventoryManager.AddItem(dataBase.objectsData[placementObject.ID].Item);
             }
         }
     }
