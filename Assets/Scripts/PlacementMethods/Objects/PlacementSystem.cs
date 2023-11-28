@@ -69,6 +69,8 @@ public class PlacementSystem : MonoBehaviour
 
         selectedObjectIndex = dataBase.objectsData.FindIndex(data => data.ID == ID);
         inputManager.currentCost = dataBase.objectsData[selectedObjectIndex].Cost;
+        inputManager.currentWater = dataBase.objectsData[selectedObjectIndex].WaterCost;
+
 
         if (selectedObjectIndex < 0)
         {
@@ -102,7 +104,6 @@ public class PlacementSystem : MonoBehaviour
                 dataBase.objectsData[selectedObjectIndex].ID,
                 placedGameObject.Count - 1);
             inputManager.OnEsq += () => Destroy(clickedButton);
-            inputManager.isPlaced = true;
         }
     }
 
@@ -121,6 +122,8 @@ public class PlacementSystem : MonoBehaviour
 
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
+        inputManager.currentCost = 0;
+        inputManager.currentWater = 0;
     }
 
     private bool CheckBuild()
@@ -150,7 +153,6 @@ public class PlacementSystem : MonoBehaviour
         {
             previewRenderer.material.color = Color.white;
         }
-
         else
         {
             previewRenderer.material.color = Color.red;

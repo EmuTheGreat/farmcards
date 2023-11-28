@@ -16,11 +16,37 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI waterText;
     public int water;
+    
+    [SerializeField]
+    private TextMeshProUGUI waterSumText;
+    public int waterSum;
 
-    private void FixedUpdate()
+    private void Start()
     {
-        balanceText.text = balance.ToString();
-        dayText.text = day.ToString();
+        SetBalance(0);
+        SetDay(1);
+    }
+
+    public void SetWater(int value)
+    {
+        water += value;
         waterText.text = water.ToString();
+    }
+
+    public void SetDay(int value)
+    {
+        day += value;
+        dayText.text = day.ToString();
+    }
+
+    public void SetBalance(int value)
+    {
+        balance += value;
+        balanceText.text = balance.ToString();
+    }
+
+    public void SetWaterSum(int value)
+    {
+        waterSumText.text = value.ToString();
     }
 }

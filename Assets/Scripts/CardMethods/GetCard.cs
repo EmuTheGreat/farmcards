@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class GetCard : MonoBehaviour
     [SerializeField]
     private PlacementSystem placementSystem;
 
-    private List<int> indexList = new List<int>() { 1, 2 };
+    private List<int> indexList = new List<int>() { 0, 0, 0, 0, 1, 1, 1, 2, 3, 3 };
 
     public void CreateCard()
     {
@@ -26,13 +27,28 @@ public class GetCard : MonoBehaviour
         int rndIndex = r.Next(indexList.Count);
         int index = indexList[rndIndex];
 
-        if (parent.transform.childCount < 5)
+        Button newCard = Instantiate(cardPrefab, parent.transform);
+        var cardInfo = newCard.GetComponent<CardInfo>();
+        cardInfo.objectIndex = index;
+        cardInfo.GetComponent<Image>().sprite = dataBase.objectsData[index].Background; //Замена заднего фона карточки
+        newCard.onClick.AddListener(() => placementSystem.StartPlacement(cardInfo.objectIndex));
+    }
+
+    public void FillHand()
+    {
+        StartCoroutine(Wait());
+    }
+
+    private IEnumerator Wait()
+    {
+        for (int i = 0; i < parent.transform.childCount; i++)
         {
-            Button newCard = Instantiate(cardPrefab, parent.transform);
-            var cardInfo = newCard.GetComponent<CardInfo>();
-            cardInfo.objectIndex = index;
-            cardInfo.GetComponent<Image>().sprite = dataBase.objectsData[index].Background; //Замена заднего фона карточки
-            newCard.onClick.AddListener(() => placementSystem.StartPlacement(cardInfo.objectIndex));
+            Destroy(parent.transform.GetChild(i).GameObject());
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            CreateCard();
+            yield return new WaitForSeconds(0.08f);
         }
     }
 }
