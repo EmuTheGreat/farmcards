@@ -23,8 +23,7 @@ public class InterfaceManager : MonoBehaviour
 
     private void Start()
     {
-        SetBalance(40);
-        SetDay(1);
+        SetBalance(100);
     }
 
     public void SetWater()
@@ -48,6 +47,6 @@ public class InterfaceManager : MonoBehaviour
     public void SetWaterSum(int value)
     {
         waterSum = value;
-        waterSumText.text = waterSum.ToString();
+        waterSumText.text = value.ToString();
     }
 }

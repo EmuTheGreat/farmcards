@@ -104,6 +104,7 @@ public class PlacementSystem : MonoBehaviour
                 dataBase.objectsData[selectedObjectIndex].ID,
                 placedGameObject.Count - 1);
             inputManager.OnEsq += () => Destroy(clickedButton);
+            inputManager.flag = true;
         }
     }
 

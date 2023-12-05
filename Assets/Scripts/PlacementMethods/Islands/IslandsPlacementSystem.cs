@@ -27,7 +27,7 @@ public class IslandsPlacementSystem : MonoBehaviour
     [SerializeField]
     private IslandsGridData islandsGridData;
 
-    private bool placementFlag = false;
+    public bool placementFlag = false;
 
     private Vector3Int GetGridPosition() => islandsGrid.WorldToCell(GetMousePositon());
     private Vector3 GetMousePositon() => inputManager.GetSelectedMapPosition();
@@ -58,6 +58,11 @@ public class IslandsPlacementSystem : MonoBehaviour
         if (placementFlag)
         {
             placementFlag = !placementFlag;
+            cellIndicator.SetActive(placementFlag);
+        }
+        else
+        {
+            placementFlag = false;
             cellIndicator.SetActive(placementFlag);
         }
     }
