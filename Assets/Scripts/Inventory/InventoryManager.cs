@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    public InterfaceManager InterfaceManager;
     public Transform inventoryPanel;
     public List<InventorySlot> inventorySlots = new List<InventorySlot>();
 
@@ -38,5 +39,27 @@ public class InventoryManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void SellItems()
+    {
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            if (!slot.isEmpty)
+            {
+                int sellPrice = slot.item.Price * slot.amount;
+                InterfaceManager.SetBalance(sellPrice);
+                DeleteItem(slot);
+            }
+        }
+    }
+
+    private void DeleteItem(InventorySlot slot)
+    {
+        slot.amount = 0;
+        slot.item = null;
+        slot.isEmpty = true;
+        slot.textItemAmount.text = string.Empty;
+        slot.DeleteIcon();
     }
 }

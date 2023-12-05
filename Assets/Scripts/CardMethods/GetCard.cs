@@ -21,6 +21,8 @@ public class GetCard : MonoBehaviour
 
     private List<int> indexList = new List<int>() { 0, 0, 0, 0, 1, 1, 1, 2, 3, 3 };
 
+    private bool flag = true;
+
     public void CreateCard()
     {
         var r = new System.Random();
@@ -36,7 +38,11 @@ public class GetCard : MonoBehaviour
 
     public void FillHand()
     {
-        StartCoroutine(Wait());
+        if (flag)
+        {
+            flag = false;
+            StartCoroutine(Wait());
+        }
     }
 
     private IEnumerator Wait()
@@ -50,5 +56,6 @@ public class GetCard : MonoBehaviour
             CreateCard();
             yield return new WaitForSeconds(0.08f);
         }
+        flag = true;
     }
 }

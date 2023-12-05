@@ -24,4 +24,10 @@ public class InventorySlot : MonoBehaviour
         this.icon.GetComponent<Image>().color = new Color(1, 1, 1);
         this.icon.GetComponent<Image>().sprite = icon;
     }
+
+    public void DeleteIcon()
+    {
+        icon.GetComponent<Image>().color = new Color(255, 255, 255, 0);
+        icon.GetComponent<Image>().sprite = null;
+    }
 }

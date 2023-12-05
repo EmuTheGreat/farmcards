@@ -126,7 +126,7 @@ public class PlacementSystem : MonoBehaviour
         inputManager.currentWater = 0;
     }
 
-    private bool CheckBuild()
+    public bool CheckBuild()
     {
         Vector3 mousePosition = GetMousePositon();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);

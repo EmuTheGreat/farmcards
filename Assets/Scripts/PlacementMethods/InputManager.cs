@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
     [SerializeField]
+    private PlacementSystem placementSystem;
+    [SerializeField]
     private ObjectsManager drawObjects;
 
     [SerializeField]
@@ -30,13 +32,14 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (!IsPointOverUI() & Input.GetMouseButtonDown(0) & colliders.CheckIslandBuild(new List<Vector2>() { GetSelectedMapPosition() }) & interfaceManager.balance - currentCost >= 0)
+        if (Input.GetMouseButtonDown(0) && !IsPointOverUI() && interfaceManager.balance - currentCost >= 0 && colliders.CheckIslandBuild(new List<Vector2>() { GetSelectedMapPosition() }) && placementSystem.CheckBuild())
         {
             OnClicked?.Invoke();
             drawObjects.UpdateDrawObjects();
             OnEsq?.Invoke();
             OnEsq = null;
 
+            //—чЄтчик воды, который прибавл€ет или отнимает воду каждый день.
             waterSum += currentWater;
             interfaceManager.SetWaterSum(waterSum);
             interfaceManager.SetBalance(-currentCost);

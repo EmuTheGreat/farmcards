@@ -9,4 +9,5 @@ public class ItemScriptableObject : ScriptableObject
     public string itemName;
     public Sprite sprite;
     public int Id;
+    public int Price;
 }

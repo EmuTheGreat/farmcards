@@ -9,8 +9,6 @@ public class ObjectsManager : MonoBehaviour
     [SerializeField]
     private GameObject parent;
     [SerializeField]
-    private InventoryManager inventoryManager;
-    [SerializeField]
     private ObjectsDatabaseSO dataBase;
     [SerializeField]
     private PlacementSystem placementSystem;
@@ -32,16 +30,5 @@ public class ObjectsManager : MonoBehaviour
             list.Add(parent.transform.GetChild(i));
         }
         return list.OrderByDescending(x => x.transform.position.y).ToList();
-    }
-
-    public void Harvest()
-    {
-        foreach(PlacementData placementObject in placementSystem.placementData.placedObjects.Values)
-        {
-            if (dataBase.objectsData[placementObject.ID].Item != null)
-            {
-                inventoryManager.AddItem(dataBase.objectsData[placementObject.ID].Item);
-            }
-        }
     }
 }

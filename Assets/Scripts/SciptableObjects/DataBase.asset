@@ -25,7 +25,7 @@ MonoBehaviour:
   - <Name>k__BackingField: Tomato
     <ID>k__BackingField: 1
     <Cost>k__BackingField: 10
-    <WaterCost>k__BackingField: -5
+    <WaterCost>k__BackingField: -2
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 9113867764294389787, guid: 511d6fe13dcf3a84e94fd7dd36bb7976, type: 3}
     <Sprite>k__BackingField: {fileID: -1714256596, guid: f07509a37e159064fa88705673a14d22, type: 3}
@@ -43,7 +43,7 @@ MonoBehaviour:
   - <Name>k__BackingField: "\u041A\u043E\u043B\u043E\u0434\u0435\u0446"
     <ID>k__BackingField: 3
     <Cost>k__BackingField: 20
-    <WaterCost>k__BackingField: 20
+    <WaterCost>k__BackingField: 8
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 9148707920300417990, guid: bc8a6ee062a796c44a099b369c9cbed2, type: 3}
     <Sprite>k__BackingField: {fileID: 38066154, guid: f07509a37e159064fa88705673a14d22, type: 3}
