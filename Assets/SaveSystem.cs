@@ -3,37 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using System.Linq;
 
-public class SaveSystem
+public class SaveSystem : MonoBehaviour
 {
-    public static void Save(InterfaceManager manager)
+    //посмотри на файл (смотри меня) P.S Некит, это не тебе
+    void OnDisable() => Save();
+
+    void OnEnable() => Load();
+
+    void Load()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/save.sys";
-        FileStream stream = new FileStream(path, FileMode.Create);
-
-        InterfaceData data = new InterfaceData(manager);
-
-        bf.Serialize(stream, data);
-        stream.Close();
+        foreach (var persist in FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveState>())
+        {
+            persist.Load();
+        }
     }
 
-    public static InterfaceData Load()
+    void Save()
     {
-        string path = Application.persistentDataPath + "/save.sys";
-        if (File.Exists(path))
+        foreach(var persist in FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveState>())
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            InterfaceData data = bf.Deserialize(stream) as InterfaceData;
-            stream.Close();
-            return data;
-        }
-        else
-        {
-            Debug.LogError("Save file not found in " + path);
-            return null;
+            persist.Save();
         }
     }
 }
