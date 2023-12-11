@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -74,18 +75,5 @@ public class InputManager : MonoBehaviour
         Vector3 worldPosition = sceneCamera.ScreenToWorldPoint(mousePos);
         worldPosition.z = -1f;
         return worldPosition;
-    }
-
-    public void Save()
-    {
-        SaveSystem.Save(interfaceManager);
-    }
-
-    public void Load()
-    {
-        InterfaceData data = SaveSystem.Load();
-        interfaceManager.balance = data.Balance;
-        interfaceManager.day = data.Day;
-        interfaceManager.water = data.Water;
     }
 }

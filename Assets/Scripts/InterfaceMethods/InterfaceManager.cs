@@ -20,10 +20,18 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI waterSumText;
     public int waterSum;
+    [SerializeField]
 
     private void Start()
     {
-        SetBalance(30);
+        if (PlayerPrefs.HasKey("Balance"))
+        {
+            balanceText.text = balance.ToString();
+        }
+        else
+        {
+            SetBalance(100);
+        }
     }
 
     public void SetWater()
@@ -49,4 +57,20 @@ public class InterfaceManager : MonoBehaviour
         waterSum = value;
         waterSumText.text = value.ToString();
     }
+    
+
+    void OnDisable()
+    {
+        PlayerPrefs.SetInt("Balance", balance);
+
+    }
+
+    void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("Balance"))
+        {
+            balance = PlayerPrefs.GetInt("Balance");
+        }
+    }
+
 }
