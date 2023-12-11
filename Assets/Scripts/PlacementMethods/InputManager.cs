@@ -36,7 +36,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (!islandPlacementSystem.placementFlag && Input.GetMouseButtonDown(0) && !IsPointOverUI() && interfaceManager.balance - currentCost >= 0 && colliders.CheckIslandBuild(new List<Vector2>() { GetSelectedMapPosition() }))
+        if (!islandPlacementSystem.placementFlag && Input.GetMouseButtonDown(0) && !IsPointOverUI() && interfaceManager.balance - currentCost >= 0)
         {
             OnClicked?.Invoke();
             drawObjects.UpdateDrawObjects();

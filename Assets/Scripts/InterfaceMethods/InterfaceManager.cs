@@ -23,7 +23,7 @@ public class InterfaceManager : MonoBehaviour
 
     private void Start()
     {
-        SetBalance(100);
+        SetBalance(30);
     }
 
     public void SetWater()
