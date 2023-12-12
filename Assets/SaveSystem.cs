@@ -13,7 +13,7 @@ public class SaveSystem : MonoBehaviour
 
     void OnEnable() => Load();
 
-    void Load()
+    public void Load()
     {
         foreach (var persist in FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveState>())
         {
@@ -21,7 +21,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    void Save()
+    public void Save()
     {
         foreach(var persist in FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveState>())
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class InterfaceManager : MonoBehaviour
+public class InterfaceManager : MonoBehaviour, ISaveState
 {
     [SerializeField]
     private TextMeshProUGUI balanceText;
@@ -24,11 +24,7 @@ public class InterfaceManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Balance"))
-        {
-            balanceText.text = balance.ToString();
-        }
-        else
+        if (!PlayerPrefs.HasKey("Balance"))
         {
             SetBalance(100);
         }
@@ -59,17 +55,18 @@ public class InterfaceManager : MonoBehaviour
     }
     
 
-    void OnDisable()
+    public void Save()
     {
         PlayerPrefs.SetInt("Balance", balance);
 
     }
 
-    void OnEnable()
+    public void Load()
     {
         if (PlayerPrefs.HasKey("Balance"))
         {
             balance = PlayerPrefs.GetInt("Balance");
+            balanceText.text = balance.ToString();
         }
     }
 
