@@ -11332,8 +11332,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1559266858}
-        m_TargetAssemblyTypeName: InterfaceManager, Assembly-CSharp
+      - m_Target: {fileID: 1336092909}
+        m_TargetAssemblyTypeName: SaveSystem, Assembly-CSharp
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:
@@ -12142,8 +12142,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1559266858}
-        m_TargetAssemblyTypeName: InterfaceManager, Assembly-CSharp
+      - m_Target: {fileID: 1336092909}
+        m_TargetAssemblyTypeName: SaveSystem, Assembly-CSharp
         m_MethodName: Load
         m_Mode: 1
         m_Arguments:
