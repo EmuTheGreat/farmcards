@@ -37,4 +37,7 @@ public class ObjectData
 
     [field: SerializeField]
     public ItemScriptableObject Item { get; private set; }
+    
+    [field: SerializeField]
+    public int Weight { get; private set; }
 }

@@ -26,7 +26,7 @@ public class InterfaceManager : MonoBehaviour, ISaveState
     {
         if (!PlayerPrefs.HasKey("Balance"))
         {
-            SetBalance(100);
+        SetBalance(100);
         }
     }
 
@@ -71,4 +71,11 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         }
     }
 
+    //void OnEnable()
+    //{
+    //    if (PlayerPrefs.HasKey("Balance"))
+    //    {
+    //        balance = PlayerPrefs.GetInt("Balance");
+    //    }
+    //}
 }

@@ -67,7 +67,7 @@ public class PlacementSystem : MonoBehaviour
 
         StopPlacement();
 
-        selectedObjectIndex = dataBase.objectsData.FindIndex(data => data.ID == ID);
+        selectedObjectIndex = dataBase.objectsData.Find(x => x.ID == ID).ID;
         inputManager.currentCost = dataBase.objectsData[selectedObjectIndex].Cost;
         inputManager.currentWater = dataBase.objectsData[selectedObjectIndex].WaterCost;
 

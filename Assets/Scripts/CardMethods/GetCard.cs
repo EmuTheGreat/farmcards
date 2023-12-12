@@ -19,7 +19,7 @@ public class GetCard : MonoBehaviour
     [SerializeField]
     private PlacementSystem placementSystem;
 
-    private List<int> indexList = new List<int>() { 0, 0, 0, 0, 1, 1, 1, 2, 3, 3 };
+    private List<int> indexList = new List<int>() { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 3, 3 };
 
     private bool flag = true;
 
