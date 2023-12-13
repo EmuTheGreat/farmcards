@@ -54,14 +54,12 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         waterSumText.text = value.ToString();
     }
     
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 9f933247c394193e543c863ba3dbf535e459689b
     public void Save()
     {
         PlayerPrefs.SetInt("Balance", balance);
+        PlayerPrefs.SetInt("Water", water);
+        PlayerPrefs.SetInt("Day", day);
+        PlayerPrefs.SetInt("WaterSum", waterSum);
 
     }
 
@@ -71,14 +69,12 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         {
             balance = PlayerPrefs.GetInt("Balance");
             balanceText.text = balance.ToString();
+            water = PlayerPrefs.GetInt("Water");
+            waterText.text = water.ToString();
+            day = PlayerPrefs.GetInt("Day");
+            dayText.text = day.ToString();
+            waterSum = PlayerPrefs.GetInt("WaterSum");
+            waterSumText.text = waterSum.ToString();
         }
     }
-
-    //void OnEnable()
-    //{
-    //    if (PlayerPrefs.HasKey("Balance"))
-    //    {
-    //        balance = PlayerPrefs.GetInt("Balance");
-    //    }
-    //}
 }
