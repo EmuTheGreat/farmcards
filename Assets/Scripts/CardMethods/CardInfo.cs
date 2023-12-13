@@ -12,6 +12,7 @@ public class CardInfo : MonoBehaviour
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Cost;
     public TextMeshProUGUI WaterCost;
+    public TextMeshProUGUI Description;
 
     public void ShowCardInfo()
     {
@@ -20,6 +21,7 @@ public class CardInfo : MonoBehaviour
         Name.text = objectData.Name;
         Cost.text = objectData.Cost.ToString();
         WaterCost.text = objectData.WaterCost.ToString();
+        Description.text = objectData.Description;
     }
 
     private void Start()

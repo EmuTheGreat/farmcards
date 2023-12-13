@@ -40,4 +40,7 @@ public class ObjectData
     
     [field: SerializeField]
     public int Weight { get; private set; }
+
+    [field: SerializeField]
+    public string Description { get; private set; }
 }
