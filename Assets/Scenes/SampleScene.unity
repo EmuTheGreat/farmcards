@@ -9061,6 +9061,7 @@ MonoBehaviour:
   inventoryManager: {fileID: 2041325922}
   dataBase: {fileID: 11400000, guid: f497121e3f81e1447b11d7fa646e9774, type: 2}
   placementSystem: {fileID: 953875267}
+  islandsList: {fileID: 558948616}
 --- !u!224 &1609543224 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6919840044228073325, guid: fd951645477831b4eb2c605db8b116e2, type: 3}

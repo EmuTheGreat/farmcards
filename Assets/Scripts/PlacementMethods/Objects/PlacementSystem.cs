@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -91,7 +92,8 @@ public class PlacementSystem : MonoBehaviour
             return;
         }
 
-        if (CheckBuild())
+        IslandBuilding island;
+        if (CheckBuild(out island))
         {
             GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
             newObject.transform.position = grid.CellToWorld(gridPosition);
@@ -105,6 +107,7 @@ public class PlacementSystem : MonoBehaviour
                 placedGameObject.Count - 1);
             inputManager.OnEsq += () => Destroy(clickedButton);
             inputManager.flag = true;
+            island.placedObjects.Add((Vector2Int)gridPosition);
         }
     }
 
@@ -127,7 +130,7 @@ public class PlacementSystem : MonoBehaviour
         inputManager.currentWater = 0;
     }
 
-    public bool CheckBuild()
+    public bool CheckBuild(out IslandBuilding island)
     {
         Vector3 mousePosition = GetMousePositon();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
@@ -137,7 +140,7 @@ public class PlacementSystem : MonoBehaviour
             .Select(x => new Vector2(x.x, x.y))
             .ToList();
 
-        return colliders.CheckIslandBuild(new List<Vector2>(pos) { mousePosition }) & CheckPlacementValidity(gridPosition, selectedObjectIndex);
+        return colliders.CheckIslandBuild(new List<Vector2>(pos) { mousePosition }, out island) & CheckPlacementValidity(gridPosition, selectedObjectIndex);
     }
 
 
@@ -150,7 +153,8 @@ public class PlacementSystem : MonoBehaviour
 
         Vector3Int gridPosition = GetGridPosition();
 
-        if (CheckBuild())
+        IslandBuilding island;
+        if (CheckBuild(out island))
         {
             previewRenderer.material.color = Color.white;
         }

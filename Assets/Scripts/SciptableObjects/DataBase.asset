@@ -23,6 +23,8 @@ MonoBehaviour:
     <Background>k__BackingField: {fileID: 21300000, guid: de83ececde91f5848a38ddedbbd7d0f3, type: 3}
     <Item>k__BackingField: {fileID: 11400000, guid: 0d4335acff5986043a685bc01bf15bc7, type: 2}
     <Weight>k__BackingField: 4
+    <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
+      \u043A\u0443\u043A\u0443\u0440\u0443\u0437\u0443"
   - <Name>k__BackingField: "\u041F\u043E\u043C\u0438\u0434\u043E\u0440"
     <ID>k__BackingField: 1
     <Cost>k__BackingField: 10
@@ -33,6 +35,8 @@ MonoBehaviour:
     <Background>k__BackingField: {fileID: 21300000, guid: de83ececde91f5848a38ddedbbd7d0f3, type: 3}
     <Item>k__BackingField: {fileID: 11400000, guid: d9e12c5dc3c72404d8970466cda4f576, type: 2}
     <Weight>k__BackingField: 3
+    <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
+      \u043F\u043E\u043C\u0438\u0434\u043E\u0440"
   - <Name>k__BackingField: "\u0417\u0430\u0433\u043E\u043D"
     <ID>k__BackingField: 2
     <Cost>k__BackingField: 20
@@ -43,6 +47,8 @@ MonoBehaviour:
     <Background>k__BackingField: {fileID: 21300000, guid: b9532c6e159edc840a7ad7f0c86685c3, type: 3}
     <Item>k__BackingField: {fileID: 0}
     <Weight>k__BackingField: 1
+    <Description>k__BackingField: "\u0421\u043E\u0434\u0435\u0440\u0436\u0438\u0442
+      \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u0445"
   - <Name>k__BackingField: "\u041A\u043E\u043B\u043E\u0434\u0435\u0446"
     <ID>k__BackingField: 3
     <Cost>k__BackingField: 20
@@ -53,3 +59,5 @@ MonoBehaviour:
     <Background>k__BackingField: {fileID: 21300000, guid: b9532c6e159edc840a7ad7f0c86685c3, type: 3}
     <Item>k__BackingField: {fileID: 0}
     <Weight>k__BackingField: 2
+    <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
+      \u0432\u043E\u0434\u0443"
