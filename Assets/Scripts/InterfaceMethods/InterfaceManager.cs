@@ -55,6 +55,10 @@ public class InterfaceManager : MonoBehaviour, ISaveState
     }
     
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9f933247c394193e543c863ba3dbf535e459689b
     public void Save()
     {
         PlayerPrefs.SetInt("Balance", balance);
@@ -70,4 +74,11 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         }
     }
 
+    //void OnEnable()
+    //{
+    //    if (PlayerPrefs.HasKey("Balance"))
+    //    {
+    //        balance = PlayerPrefs.GetInt("Balance");
+    //    }
+    //}
 }
