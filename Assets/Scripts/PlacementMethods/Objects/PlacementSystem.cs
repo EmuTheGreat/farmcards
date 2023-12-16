@@ -71,6 +71,7 @@ public class PlacementSystem : MonoBehaviour
         selectedObjectIndex = dataBase.objectsData.Find(x => x.ID == ID).ID;
         inputManager.currentCost = dataBase.objectsData[selectedObjectIndex].Cost;
         inputManager.currentWater = dataBase.objectsData[selectedObjectIndex].WaterCost;
+        inputManager.buildingsCost = dataBase.objectsData[selectedObjectIndex].BuildingsCost;
 
 
         if (selectedObjectIndex < 0)
@@ -128,6 +129,7 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnExit -= StopPlacement;
         inputManager.currentCost = 0;
         inputManager.currentWater = 0;
+        inputManager.buildingsCost = 0;
     }
 
     public bool CheckBuild(out IslandBuilding island)

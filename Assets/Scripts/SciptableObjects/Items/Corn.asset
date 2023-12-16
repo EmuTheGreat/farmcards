@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Corn
   sprite: {fileID: 292145369, guid: f07509a37e159064fa88705673a14d22, type: 3}
   Id: 0
-  Price: 3
+  Price: 5

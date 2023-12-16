@@ -35,8 +35,8 @@ public class IslandsPlacementSystem : MonoBehaviour
     private IslandsGridData islandsGridData;
 
     public bool placementFlag = false;
-    private HashSet<Vector2> posibleIslands;
-    private int islandCost;
+    public HashSet<Vector2> posibleIslands;
+    public int islandCost;
 
     private Vector3Int GetGridPosition() => islandsGrid.WorldToCell(GetMousePositon());
     private Vector3Int GetGridPosition(Vector2 position) => islandsGrid.WorldToCell(position);
@@ -86,6 +86,7 @@ public class IslandsPlacementSystem : MonoBehaviour
             {
                 CreateIsland(pos);
                 interfaceManager.SetBalance(-islandCost);
+                islandCost += (int)(islandCost / 0.15f);
                 RemovePosiblePosibleIslands();
                 UpdateColor();
                 DrawPosibleIslands();

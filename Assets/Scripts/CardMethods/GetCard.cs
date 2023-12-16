@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,16 +22,21 @@ public class GetCard : MonoBehaviour
 
     private bool flag = true;
 
-    public void CreateCard()
+    public void CreateRandomCard()
     {
         var r = new System.Random();
         int rndIndex = r.Next(indexList.Count);
         int index = indexList[rndIndex];
 
+        CreateCard(index);
+    }
+
+    public void CreateCard(int index)
+    {
         Button newCard = Instantiate(cardPrefab, parent.transform);
         var cardInfo = newCard.GetComponent<CardInfo>();
         cardInfo.objectIndex = index;
-        cardInfo.GetComponent<Image>().sprite = dataBase.objectsData[index].Background; //Замена заднего фона карточки
+        cardInfo.GetComponent<Image>().sprite = dataBase.objectsData[index].Background;
         newCard.onClick.AddListener(() => placementSystem.StartPlacement(cardInfo.objectIndex));
     }
 
@@ -53,9 +57,18 @@ public class GetCard : MonoBehaviour
         }
         for (int i = 0; i < 5; i++)
         {
-            CreateCard();
+            CreateRandomCard();
             yield return new WaitForSeconds(0.08f);
         }
         flag = true;
+    }
+
+    private void Start()
+    {
+        CreateCard(0);
+        CreateCard(0);
+        CreateCard(1);
+        CreateCard(2);
+        CreateCard(3);
     }
 }

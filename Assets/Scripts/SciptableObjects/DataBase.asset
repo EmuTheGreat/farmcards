@@ -17,6 +17,7 @@ MonoBehaviour:
     <ID>k__BackingField: 0
     <Cost>k__BackingField: 5
     <WaterCost>k__BackingField: -1
+    <BuildingsCost>k__BackingField: 0
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 5837591200865036453, guid: 919519eee3c7895448a79107b0c6c386, type: 3}
     <Sprite>k__BackingField: {fileID: 1518939347, guid: f07509a37e159064fa88705673a14d22, type: 3}
@@ -29,6 +30,7 @@ MonoBehaviour:
     <ID>k__BackingField: 1
     <Cost>k__BackingField: 10
     <WaterCost>k__BackingField: -2
+    <BuildingsCost>k__BackingField: 0
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 9113867764294389787, guid: 511d6fe13dcf3a84e94fd7dd36bb7976, type: 3}
     <Sprite>k__BackingField: {fileID: -1714256596, guid: f07509a37e159064fa88705673a14d22, type: 3}
@@ -41,6 +43,7 @@ MonoBehaviour:
     <ID>k__BackingField: 2
     <Cost>k__BackingField: 20
     <WaterCost>k__BackingField: 0
+    <BuildingsCost>k__BackingField: 0
     <Size>k__BackingField: {x: 2, y: 2}
     <Prefab>k__BackingField: {fileID: 3992885414807039296, guid: 4d760806984d0234897c927d0eb6c0a9, type: 3}
     <Sprite>k__BackingField: {fileID: 21300000, guid: 2df4e51effcaa6a469433a28c973cb77, type: 3}
@@ -53,6 +56,7 @@ MonoBehaviour:
     <ID>k__BackingField: 3
     <Cost>k__BackingField: 20
     <WaterCost>k__BackingField: 8
+    <BuildingsCost>k__BackingField: 10
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 9148707920300417990, guid: bc8a6ee062a796c44a099b369c9cbed2, type: 3}
     <Sprite>k__BackingField: {fileID: 38066154, guid: f07509a37e159064fa88705673a14d22, type: 3}

@@ -20,7 +20,13 @@ public class InterfaceManager : MonoBehaviour, ISaveState
     [SerializeField]
     private TextMeshProUGUI waterSumText;
     public int waterSum;
+    
     [SerializeField]
+    private TextMeshProUGUI BuildingsCost;
+    public int buildingsCost;
+
+    [SerializeField]
+    private TextMeshProUGUI PaymentsMessage;
 
     private void Start()
     {
@@ -53,6 +59,17 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         waterSum = value;
         waterSumText.text = value.ToString();
     }
+
+    public void SetBuildingsCost(int value)
+    {
+        buildingsCost += value;
+        BuildingsCost.text = buildingsCost.ToString();
+    }
+
+    public void SetPaymentsMessage(int cost, int day)
+    {
+        PaymentsMessage.text = $"Заплати {cost}\nчерез {day}\n{Declension(day)}.";
+    }
     
     public void Save()
     {
@@ -75,6 +92,23 @@ public class InterfaceManager : MonoBehaviour, ISaveState
             dayText.text = day.ToString();
             waterSum = PlayerPrefs.GetInt("WaterSum");
             waterSumText.text = waterSum.ToString();
+        }
+    }
+
+    private string Declension(int day)
+    {
+        if (day % 10 == 1 && day != 11)
+        {
+            return "день";
+        }
+
+        else if (day % 10 == 2 && day != 12)
+        {
+            return "дня";
+        }
+        else
+        {
+            return "дней";
         }
     }
 }

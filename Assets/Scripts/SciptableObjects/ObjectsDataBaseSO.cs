@@ -22,6 +22,8 @@ public class ObjectData
     public int Cost { get; private set; }
     [field: SerializeField]
     public int WaterCost { get; private set; }
+    [field: SerializeField]
+    public int BuildingsCost { get; private set; }
 
     [field: SerializeField]
     public Vector2Int Size { get; private set; } = Vector2Int.one;

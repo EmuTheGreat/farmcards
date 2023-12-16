@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Logic : MonoBehaviour
@@ -19,11 +19,15 @@ public class Logic : MonoBehaviour
 
     private List<IslandBuilding> islands = new();
     private int islandsCounter = 0;
+    private int paymentCost = 100;
+    private int paymentDay = 10;
+    private HashSet<Vector2Int> occupied;
 
     private void Start()
     {
-        islandsCounter = islandsList.transform.childCount;
+        occupied = new HashSet<Vector2Int>();
         islands = GetIslands();
+        interfaceManager.SetPaymentsMessage(paymentCost, paymentDay - interfaceManager.day);
     }
 
     public void NextDay()
@@ -32,13 +36,27 @@ public class Logic : MonoBehaviour
         Harvest1();
         interfaceManager.SetDay(1);
         interfaceManager.SetWater();
+        interfaceManager.SetBalance(-interfaceManager.buildingsCost);
+        interfaceManager.SetPaymentsMessage(paymentCost, paymentDay - interfaceManager.day);
+        UpdatePaymentsParams();
+    }
+
+    private void UpdatePaymentsParams()
+    {
+        if (paymentDay - interfaceManager.day == 0)
+        {
+            interfaceManager.SetBalance(-paymentCost);
+            paymentCost += 20;
+            paymentDay += 10;
+        }
     }
 
     private void Harvest1()
     {
         foreach (IslandBuilding island in islands)
         {
-            foreach (Vector2Int placedObject in island.placedObjects)
+            var sortedList = island.placedObjects.OrderBy(x => x.y).ThenBy(x => x.x).ToList();
+            foreach (Vector2Int placedObject in sortedList)
             {
                 PlacementData data;
                 if (placementSystem.placementData.placedObjects.TryGetValue(placedObject, out data))
@@ -51,7 +69,6 @@ public class Logic : MonoBehaviour
             }
         }
     }
-
 
     private void Harvest()
     {
@@ -77,5 +94,25 @@ public class Logic : MonoBehaviour
             return result;
         }
         return islands;
+    }
+
+    private bool TryFindGroupFour(int id, Vector2Int pos)
+    {
+        List<Vector2Int> dirs = new() { new(1, 0), new(1, -1), new(0, -1) };
+        foreach (var dir in dirs)
+        {
+            if (!placementSystem.placementData.placedObjects.ContainsKey(pos + dir) || placementSystem.placementData.placedObjects[pos+dir].ID != id)
+            {
+                return false;
+            }
+        }
+
+        occupied.Add(pos);
+        foreach (var dir in dirs)
+        {
+            occupied.Add(pos + dir);
+        }
+
+        return true;
     }
 }

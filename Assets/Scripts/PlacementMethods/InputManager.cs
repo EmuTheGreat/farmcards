@@ -32,6 +32,7 @@ public class InputManager : MonoBehaviour
     public int currentCost;
     public int currentWater;
     public int waterSum;
+    public int buildingsCost;
 
     public bool flag;
 
@@ -51,6 +52,7 @@ public class InputManager : MonoBehaviour
                 waterSum += currentWater;
                 interfaceManager.SetWaterSum(waterSum);
                 interfaceManager.SetBalance(-currentCost);
+                interfaceManager.SetBuildingsCost(buildingsCost);
                 flag = false;
             }
 
