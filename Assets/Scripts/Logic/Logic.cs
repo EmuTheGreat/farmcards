@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -61,7 +62,8 @@ public class Logic : MonoBehaviour
                 PlacementData data;
                 if (placementSystem.placementData.placedObjects.TryGetValue(placedObject, out data))
                 {
-                    if (dataBase.objectsData[data.ID].Item != null)
+                    TryFindGroupFour(data.ID, placedObject);
+                    if (!occupied.Contains(placedObject) && dataBase.objectsData[data.ID].Item != null)
                     {
                         inventoryManager.AddItem(dataBase.objectsData[data.ID].Item);
                     }
@@ -110,9 +112,12 @@ public class Logic : MonoBehaviour
         occupied.Add(pos);
         foreach (var dir in dirs)
         {
+            inventoryManager.AddItem(dataBase.objectsData[id].Item);
+            inventoryManager.AddItem(dataBase.objectsData[id].Item);
             occupied.Add(pos + dir);
         }
-
         return true;
     }
+
+    private bool TryFindAllIslands(List<Vector2Int> sortedList, int id) => sortedList.All(x => placementSystem.placementData.placedObjects[x].ID == id) && sortedList.Count == 16;
 }
