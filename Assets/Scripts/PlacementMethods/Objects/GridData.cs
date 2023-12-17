@@ -45,6 +45,7 @@ public class GridData
         }
         return true;
     }
+   
 }
 
 public class PlacementData
@@ -61,3 +62,5 @@ public class PlacementData
     public int ID { get; private set; }
     public int PlacedObjectIndex { get; private set; }
 }
+
+

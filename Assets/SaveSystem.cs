@@ -9,9 +9,6 @@ using System.Linq;
 public class SaveSystem : MonoBehaviour
 {
     //посмотри на файл (смотри меня) P.S Некит, это не тебе
-    void OnDisable() => Save();
-
-    void OnEnable() => Load();
 
     public void Load()
     {
