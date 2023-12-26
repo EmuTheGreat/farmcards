@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class MainMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("Balance"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+      
         }
         else
         {
@@ -25,7 +27,10 @@ public class MainMenu : MonoBehaviour
 
     public void NewPlayGame()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("Balance");
+        PlayerPrefs.DeleteKey("Water");
+        PlayerPrefs.DeleteKey("Day");
+        PlayerPrefs.DeleteKey("WaterSum");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

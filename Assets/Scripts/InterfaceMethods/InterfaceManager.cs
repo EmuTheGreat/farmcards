@@ -34,6 +34,10 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         {
             SetBalance(100);
         }
+        else
+        {
+            Load();
+        }
     }
 
     public void SetWater()
