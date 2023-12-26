@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("Balance"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
       
         }
         else
