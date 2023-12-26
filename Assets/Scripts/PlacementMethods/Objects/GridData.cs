@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class GridData
 {
-    public Dictionary<Vector2Int, PlacementData> placedObjects = new();
+    public Dictionary<Vector2, PlacementData> placedObjects = new();
 
 
-    public void AddObjectAt(Vector3Int gridPosition, Vector2Int objectSize, int ID, int placedObjectIndex)
+    public void AddObjectAt(Vector3Int gridPosition, Vector2Int objectSize, int ID)
     {
         List<Vector2Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex);
+        PlacementData data = new PlacementData(positionToOccupy, ID);
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -48,19 +48,24 @@ public class GridData
    
 }
 
+[Serializable]
 public class PlacementData
 {
     public List<Vector2Int> occupiedPositions;
 
-    public PlacementData(List<Vector2Int> occupiedPositions, int iD, int placedObjectIndex)
+    public PlacementData()
+    {
+        occupiedPositions = new List<Vector2Int>();
+        ID = -1;
+    }
+
+    public PlacementData(List<Vector2Int> occupiedPositions, int iD)
     {
         this.occupiedPositions = occupiedPositions;
         ID = iD;
-        PlacedObjectIndex = placedObjectIndex;
     }
 
-    public int ID { get; private set; }
-    public int PlacedObjectIndex { get; private set; }
+    public int ID;
 }
 
 

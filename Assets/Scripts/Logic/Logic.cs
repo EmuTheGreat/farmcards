@@ -22,11 +22,11 @@ public class Logic : MonoBehaviour
     private int islandsCounter = 0;
     private int paymentCost = 100;
     private int paymentDay = 10;
-    private HashSet<Vector2Int> occupied;
+    private HashSet<Vector2> occupied;
 
     private void Start()
     {
-        occupied = new HashSet<Vector2Int>();
+        occupied = new HashSet<Vector2>();
         islands = GetIslands();
         interfaceManager.SetPaymentsMessage(paymentCost, paymentDay - interfaceManager.day);
     }
@@ -57,7 +57,7 @@ public class Logic : MonoBehaviour
         foreach (IslandBuilding island in islands)
         {
             var sortedList = island.placedObjects.OrderBy(x => x.y).ThenBy(x => x.x).ToList();
-            foreach (Vector2Int placedObject in sortedList)
+            foreach (var placedObject in sortedList)
             {
                 PlacementData data;
                 if (placementSystem.placementData.placedObjects.TryGetValue(placedObject, out data))
@@ -98,7 +98,7 @@ public class Logic : MonoBehaviour
         return islands;
     }
 
-    private bool TryFindGroupFour(int id, Vector2Int pos)
+    private bool TryFindGroupFour(int id, Vector2 pos)
     {
         List<Vector2Int> dirs = new() { new(1, 0), new(1, -1), new(0, -1) };
         foreach (var dir in dirs)
@@ -112,9 +112,12 @@ public class Logic : MonoBehaviour
         occupied.Add(pos);
         foreach (var dir in dirs)
         {
-            inventoryManager.AddItem(dataBase.objectsData[id].Item);
-            inventoryManager.AddItem(dataBase.objectsData[id].Item);
-            occupied.Add(pos + dir);
+            if (dataBase.objectsData[id].Item != null)
+            {
+                inventoryManager.AddItem(dataBase.objectsData[id].Item);
+                inventoryManager.AddItem(dataBase.objectsData[id].Item);
+                occupied.Add(pos + dir);
+            }
         }
         return true;
     }

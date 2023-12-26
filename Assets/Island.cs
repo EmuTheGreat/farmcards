@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Island 
 {
-    public List<Vector2Int> placementDatas;
+    public List<Vector2> placementData;
     public Vector3 islandPos;
 
-    public Island(List<Vector2Int> vector2Ints, Vector3 vector2Int)
+    public Island()
     {
-        placementDatas = vector2Ints;
-        islandPos = vector2Int;
+        placementData = new List<Vector2>();
+        islandPos = Vector3.zero;
+    }
+
+    public Island(List<Vector2> placementData, Vector3 position)
+    {
+        this.placementData = placementData;
+        islandPos = position;
     }
 }

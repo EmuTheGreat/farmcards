@@ -31,6 +31,9 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("Water");
         PlayerPrefs.DeleteKey("Day");
         PlayerPrefs.DeleteKey("WaterSum");
+        PlayerPrefs.DeleteKey("Islands");
+        PlayerPrefs.DeleteKey("PlacedIslands");
+        PlayerPrefs.DeleteKey("Objects");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

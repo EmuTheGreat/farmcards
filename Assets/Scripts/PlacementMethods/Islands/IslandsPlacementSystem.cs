@@ -32,7 +32,9 @@ public class IslandsPlacementSystem : MonoBehaviour
     private GameObject islandPrefab;
 
     [SerializeField]
-    private IslandsGridData islandsGridData;
+    private SaveObk saveObjects;
+
+    public IslandsGridData islandsGridData;
 
     public bool placementFlag = false;
     public HashSet<Vector2> posibleIslands;
@@ -48,6 +50,13 @@ public class IslandsPlacementSystem : MonoBehaviour
         islandsGridData = new();
         islandsGridData.placedIslands.Add(new(0, -0.5f));
         cellIndicator.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+
+        if (PlayerPrefs.HasKey("Islands"))
+        {
+            saveObjects.Load();
+        }
+        else { CreateIsland(new(0, -0.5f)); }
+
     }
 
     public void StartPlacement()

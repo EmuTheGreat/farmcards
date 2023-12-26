@@ -104,8 +104,7 @@ public class PlacementSystem : MonoBehaviour
             GridData selectedData = placementData;
             selectedData.AddObjectAt(gridPosition,
                 dataBase.objectsData[selectedObjectIndex].Size,
-                dataBase.objectsData[selectedObjectIndex].ID,
-                placedGameObject.Count - 1);
+                dataBase.objectsData[selectedObjectIndex].ID);
             inputManager.OnEsq += () => Destroy(clickedButton);
             inputManager.flag = true;
             island.placedObjects.Add((Vector2Int)gridPosition);

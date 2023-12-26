@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-[System.Serializable]
+
 public class IslandBuilding : MonoBehaviour
 {
     private Collider2D islandCollider;
-    public List<Vector2Int> placedObjects; 
+    public List<Vector2> placedObjects; 
 
     void Start()
     {
