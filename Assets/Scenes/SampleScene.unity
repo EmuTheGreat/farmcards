@@ -2313,7 +2313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d4b56880110a614459a5da567b41be7a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11419,7 +11419,9 @@ MonoBehaviour:
   islandPrefab: {fileID: 7302213353442712407, guid: 346ff9cfd2ac03342bf7ff9f0ed0910f, type: 3}
   islandsPlacementSystem: {fileID: 496664914}
   placementSystem: {fileID: 953875267}
-  dataBase: {fileID: 0}
+  dataBase: {fileID: 11400000, guid: f497121e3f81e1447b11d7fa646e9774, type: 2}
+  objectsManager: {fileID: 1533001899}
+  parentForObjects: {fileID: 1583838450}
 --- !u!4 &1870288744
 Transform:
   m_ObjectHideFlags: 0

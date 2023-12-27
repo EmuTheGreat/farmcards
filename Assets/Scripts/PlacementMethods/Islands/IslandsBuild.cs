@@ -7,12 +7,11 @@ using UnityEngine;
 public class IslandBuilding : MonoBehaviour
 {
     private Collider2D islandCollider;
-    public List<Vector2> placedObjects; 
+    public List<Vector2> placedObjects = new(); 
 
     void Start()
     {
         islandCollider = GetComponent<Collider2D>();
-        placedObjects = new();
     }
 
     public bool IsBuildOnIsland(List<Vector2> positions)

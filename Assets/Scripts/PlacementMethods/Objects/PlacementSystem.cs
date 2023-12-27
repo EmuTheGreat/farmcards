@@ -36,7 +36,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private IslandsPlacementSystem islandsPlacementSystem;
 
-    public GridData placementData;
+    public GridData placementData = new();
 
     private Renderer previewRenderer;
 
@@ -55,7 +55,7 @@ public class PlacementSystem : MonoBehaviour
     private void Start()
     {
         StopPlacement();
-        placementData = new();
+        //placementData = new();
         previewRenderer = cellIndicator.transform.GetChild(0).GetComponent<SpriteRenderer>();
         var volumeValue = PlayerPrefs.GetFloat(volumeParameter, volumeParameter == "CardVol" ? 0f : -30f);
         audioMixer.SetFloat(volumeParameter, volumeValue);
