@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GetCard : MonoBehaviour
+public class GetCard : MonoBehaviour, ISaveState
 {
     [SerializeField]
     GameObject parent;
@@ -63,6 +63,14 @@ public class GetCard : MonoBehaviour
         flag = true;
     }
 
+    private void AddCardInRotaition(int wight, int index)
+    {
+        for (int i = 0; i < wight; i++)
+        {
+            indexList.Add(index);
+        }
+    }
+
     private void Start()
     {
         CreateCard(0);
@@ -70,5 +78,15 @@ public class GetCard : MonoBehaviour
         CreateCard(1);
         CreateCard(2);
         CreateCard(3);
+    }
+
+    public void Save()
+    {
+
+    }
+
+    public void Load()
+    {
+
     }
 }
