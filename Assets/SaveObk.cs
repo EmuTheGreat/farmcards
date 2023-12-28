@@ -39,8 +39,6 @@ public class SaveObk : MonoBehaviour, ISaveState
         PlayerPrefs.SetString("PlacedIslands", jsonPlacedIslands);
         PlayerPrefs.SetString("KeyObjects", keyObjects);
         PlayerPrefs.SetString("ValueObjects", valueObjects);
-        Debug.Log(keysList.Count);
-        Debug.Log(valuesList.Count);
     }
 
     public void Load()
@@ -62,11 +60,6 @@ public class SaveObk : MonoBehaviour, ISaveState
             for (int i = 0; i < keyObjectsContainer.list.Count; i++)
             {
                 placedObjects.Add(keyObjectsContainer.list[i], valueObjectsContainer.list[i]);
-            }
-
-            foreach (var e in placedObjects)
-            {
-                Debug.Log(e.Key + " " + e.Value);
             }
 
             placementSystem.placementData.placedObjects = placedObjects;

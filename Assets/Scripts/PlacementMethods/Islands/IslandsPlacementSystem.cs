@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class IslandsPlacementSystem : MonoBehaviour
+public class IslandsPlacementSystem : MonoBehaviour, ISaveState
 {
     [SerializeField]
     private Grid islandsGrid;
@@ -46,7 +46,6 @@ public class IslandsPlacementSystem : MonoBehaviour
 
     private void Start()
     {
-        islandCost = 10;
         islandsGridData = new();
         islandsGridData.placedIslands.Add(new(0, -0.5f));
         cellIndicator.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
@@ -54,8 +53,13 @@ public class IslandsPlacementSystem : MonoBehaviour
         if (PlayerPrefs.HasKey("Islands"))
         {
             saveObjects.Load();
+            Load();
         }
-        else { CreateIsland(new(0, -0.5f)); }
+        else 
+        {
+            CreateIsland(new(0, -0.5f));
+            islandCost = 10;
+        }
 
     }
 
@@ -200,5 +204,18 @@ public class IslandsPlacementSystem : MonoBehaviour
         GameObject newObject = Instantiate(islandPrefab, islandsList.transform);
         newObject.transform.position = position;
         islandsGridData.placedIslands.Add(position);
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetInt("IslandCost", islandCost);
+    }
+
+    public void Load()
+    {
+        if (PlayerPrefs.HasKey("IslandCost"))
+        {
+            islandCost = PlayerPrefs.GetInt("IslandCost");
+        }
     }
 }

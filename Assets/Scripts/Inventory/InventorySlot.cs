@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -30,4 +31,10 @@ public class InventorySlot : MonoBehaviour
         icon.GetComponent<Image>().color = new Color(255, 255, 255, 0);
         icon.GetComponent<Image>().sprite = null;
     }
+}
+
+[Serializable]
+public class InventorySlotSerializable
+{
+
 }

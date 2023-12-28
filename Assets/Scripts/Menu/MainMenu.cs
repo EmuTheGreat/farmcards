@@ -38,6 +38,12 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("KeyObjects");
         PlayerPrefs.DeleteKey("ValueObjects");
 
+        PlayerPrefs.DeleteKey("PaymentCost");
+        PlayerPrefs.DeleteKey("PaymentDay");
+        PlayerPrefs.DeleteKey("IslandCost");
+
+        PlayerPrefs.DeleteKey("Inventory");
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

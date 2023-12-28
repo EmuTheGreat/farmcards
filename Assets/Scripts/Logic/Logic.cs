@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Logic : MonoBehaviour
+public class Logic : MonoBehaviour, ISaveState
 {
     [SerializeField]
     private InputManager inputManager;
@@ -20,13 +20,17 @@ public class Logic : MonoBehaviour
 
     private List<IslandBuilding> islands = new();
     private int islandsCounter = 0;
-    private int paymentCost = 100;
-    private int paymentDay = 10;
+    public int paymentCost = 100;
+    public int paymentDay = 10;
     private HashSet<Vector2> occupied;
 
     private void Start()
     {
         occupied = new HashSet<Vector2>();
+        if (PlayerPrefs.HasKey("PaymentCost"))
+        {
+            Load();
+        }
         islands = GetIslands();
         interfaceManager.SetPaymentsMessage(paymentCost, paymentDay - interfaceManager.day);
     }
@@ -123,4 +127,19 @@ public class Logic : MonoBehaviour
     }
 
     private bool TryFindAllIslands(List<Vector2Int> sortedList, int id) => sortedList.All(x => placementSystem.placementData.placedObjects[x].ID == id) && sortedList.Count == 16;
+
+    public void Save()
+    {
+        PlayerPrefs.SetInt("PaymentCost", paymentCost);
+        PlayerPrefs.SetInt("PaymentDay", paymentDay);
+    }
+
+    public void Load()
+    {
+        if (PlayerPrefs.HasKey("PaymentCost"))
+        {
+            paymentCost = PlayerPrefs.GetInt("PaymentCost");
+            paymentDay = PlayerPrefs.GetInt("PaymentDay");
+        }
+    }
 }

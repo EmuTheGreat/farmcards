@@ -81,7 +81,6 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         PlayerPrefs.SetInt("Water", water);
         PlayerPrefs.SetInt("Day", day);
         PlayerPrefs.SetInt("WaterSum", waterSum);
-
     }
 
     public void Load()
