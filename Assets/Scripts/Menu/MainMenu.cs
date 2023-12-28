@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public Button buttonStartNoNew;
     public void PlayGame()
     {
+
         if (PlayerPrefs.HasKey("Balance"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
       
-        }
-        else
-        {
-            Debug.Log("У вас нет сохранений");
         }
        
     }
@@ -45,5 +44,14 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("Inventory");
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Update()
+    {
+        if (!PlayerPrefs.HasKey("Balance"))
+        {
+            buttonStartNoNew.interactable = false;
+
+        }
     }
 }

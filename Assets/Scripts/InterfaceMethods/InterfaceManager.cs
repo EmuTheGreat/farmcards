@@ -81,6 +81,7 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         PlayerPrefs.SetInt("Water", water);
         PlayerPrefs.SetInt("Day", day);
         PlayerPrefs.SetInt("WaterSum", waterSum);
+        PlayerPrefs.SetInt("BuildingsCost", buildingsCost);
     }
 
     public void Load()
@@ -95,6 +96,8 @@ public class InterfaceManager : MonoBehaviour, ISaveState
             dayText.text = day.ToString();
             waterSum = PlayerPrefs.GetInt("WaterSum");
             waterSumText.text = waterSum.ToString();
+            buildingsCost = PlayerPrefs.GetInt("BuildingsCost");
+            BuildingsCost.text = buildingsCost.ToString();
         }
     }
 
