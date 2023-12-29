@@ -88,26 +88,36 @@ public class PlacementSystem : MonoBehaviour
     private void PlaceStructure()
     {
         Vector3Int gridPosition = GetGridPosition();
-        if (inputManager.IsPointOverUI() & !CheckPlacementValidity(gridPosition, selectedObjectIndex))
+        if (dataBase.objectsData[selectedObjectIndex].Type == ObjectType.Animal)
         {
-            return;
+            if (CheckAnimalContainer((Vector2Int)gridPosition))
+            {
+                return;
+            }
         }
-
-        IslandBuilding island;
-        if (CheckBuild(out island))
+        else
         {
-            GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
-            newObject.transform.position = grid.CellToWorld(gridPosition);
+            if (inputManager.IsPointOverUI() && (!CheckPlacementValidity(gridPosition, selectedObjectIndex)))
+            {
+                return;
+            }
 
-            audioSource.PlayOneShot(sound);
-            placedGameObject.Add(newObject);
-            GridData selectedData = placementData;
-            selectedData.AddObjectAt(gridPosition,
-                dataBase.objectsData[selectedObjectIndex].Size,
-                dataBase.objectsData[selectedObjectIndex].ID);
-            inputManager.OnEsq += () => Destroy(clickedButton);
-            inputManager.flag = true;
-            island.placedObjects.Add((Vector2Int)gridPosition);
+            IslandBuilding island;
+            if (CheckBuild(out island))
+            {
+                GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
+                newObject.transform.position = grid.CellToWorld(gridPosition);
+
+                audioSource.PlayOneShot(sound);
+                placedGameObject.Add(newObject);
+                GridData selectedData = placementData;
+                selectedData.AddObjectAt(gridPosition,
+                    dataBase.objectsData[selectedObjectIndex].Size,
+                    dataBase.objectsData[selectedObjectIndex].ID);
+                inputManager.OnEsq += () => Destroy(clickedButton);
+                inputManager.flag = true;
+                island.placedObjects.Add((Vector2Int)gridPosition);
+            }
         }
     }
 
@@ -141,7 +151,18 @@ public class PlacementSystem : MonoBehaviour
             .Select(x => new Vector2(x.x, x.y))
             .ToList();
 
-        return colliders.CheckIslandBuild(new List<Vector2>(pos) { mousePosition }, out island) & CheckPlacementValidity(gridPosition, selectedObjectIndex);
+        return colliders.CheckIslandBuild(new List<Vector2>(pos) { mousePosition }, out island) && CheckPlacementValidity(gridPosition, selectedObjectIndex);
+    }
+
+    public bool CheckAnimalContainer(Vector2Int gridPosition)
+    {
+        PlacementData data;
+        if (placementData.placedObjects.TryGetValue(gridPosition, out data) && data.ID == 2)
+        {
+            Debug.Log("Загон!");
+        }
+
+        return false;
     }
 
 

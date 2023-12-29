@@ -32,9 +32,3 @@ public class InventorySlot : MonoBehaviour
         icon.GetComponent<Image>().sprite = null;
     }
 }
-
-[Serializable]
-public class InventorySlotSerializable
-{
-
-}

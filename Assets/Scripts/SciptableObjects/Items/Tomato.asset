@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tomato
   m_EditorClassIdentifier: 
   itemName: Tomato
-  sprite: {fileID: -2132121846, guid: f07509a37e159064fa88705673a14d22, type: 3}
+  sprite: {fileID: -1091279711, guid: f07509a37e159064fa88705673a14d22, type: 3}
   Id: 1
   Price: 5

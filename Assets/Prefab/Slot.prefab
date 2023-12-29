@@ -301,6 +301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   amount: 0
-  isEmpty: 0
+  isEmpty: 1
   icon: {fileID: 0}
   textItemAmount: {fileID: 0}

@@ -14,6 +14,9 @@ public class ObjectData
 {
     [field: SerializeField]
     public string Name { get; private set; }
+    
+    [field: SerializeField]
+    public ObjectType Type { get; private set; }
 
     [field: SerializeField]
     public int ID { get; private set; }
@@ -45,4 +48,11 @@ public class ObjectData
 
     [field: SerializeField]
     public string Description { get; private set; }
+}
+
+public enum ObjectType
+{
+    Plant,
+    Animal,
+    Structure
 }

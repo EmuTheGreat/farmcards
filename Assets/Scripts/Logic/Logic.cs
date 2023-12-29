@@ -23,6 +23,7 @@ public class Logic : MonoBehaviour, ISaveState
     public int paymentCost = 100;
     public int paymentDay = 10;
     private HashSet<Vector2> occupied;
+    
 
     private void Start()
     {
