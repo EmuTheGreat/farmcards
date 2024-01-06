@@ -79,7 +79,10 @@ public class Logic : MonoBehaviour, ISaveState
                 PlacementData data;
                 if (placementSystem.placementData.placedObjects.TryGetValue(placedObject, out data))
                 {
-                    TryFindClaster4(data.ID, placedObject);
+                    if (dataBase.objectsData[data.ID].Type != ObjectType.Structure)
+                    {
+                        TryFindClaster4(data.ID, placedObject);
+                    }
                 }
             }
         }
@@ -115,6 +118,7 @@ public class Logic : MonoBehaviour, ISaveState
         }
     }
 
+    #region old code
     private void Harvest()
     {
         foreach (PlacementData placementObject in placementSystem.placementData.placedObjects.Values)
@@ -125,6 +129,7 @@ public class Logic : MonoBehaviour, ISaveState
             }
         }
     }
+    #endregion
 
     private List<IslandBuilding> GetIslands()
     {
@@ -141,6 +146,7 @@ public class Logic : MonoBehaviour, ISaveState
         return islands;
     }
 
+    #region old code
     private bool TryFindGroupFour(int id, Vector2 pos)
     {
         List<Vector2Int> dirs = new() { new(1, 0), new(1, -1), new(0, -1) };
@@ -164,6 +170,7 @@ public class Logic : MonoBehaviour, ISaveState
         }
         return true;
     }
+    #endregion
 
     private bool TryFindClaster4(int id, Vector2 pos)
     {

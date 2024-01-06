@@ -177,7 +177,7 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = GetGridPosition();
 
         IslandBuilding island;
-        if (/*CheckAnimalContainer((Vector2Int)gridPosition) || */CheckBuild(out island))
+        if (CheckAnimalContainer((Vector2Int)gridPosition) || CheckBuild(out island))
         {
             previewRenderer.material.color = Color.white;
         }
