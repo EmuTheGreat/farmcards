@@ -18,16 +18,24 @@ public class Logic : MonoBehaviour, ISaveState
     [SerializeField]
     private IslandsColliders islandsList;
 
-    private List<IslandBuilding> islands = new();
+    private List<IslandBuilding> islands;
     private int islandsCounter = 0;
     public int paymentCost = 100;
     public int paymentDay = 10;
     private HashSet<Vector2> occupied;
-    
+
+    private void Awake()
+    {
+        islands = new();
+        occupied = new HashSet<Vector2>();
+        if (PlayerPrefs.HasKey("PaymentCost"))
+        {
+            Load();
+        }
+    }
 
     private void Start()
     {
-        occupied = new HashSet<Vector2>();
         if (PlayerPrefs.HasKey("PaymentCost"))
         {
             Load();

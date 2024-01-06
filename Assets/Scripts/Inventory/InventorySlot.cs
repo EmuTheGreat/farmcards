@@ -13,7 +13,7 @@ public class InventorySlot : MonoBehaviour
     public GameObject icon;
     public TMP_Text textItemAmount;
 
-    private void Start()
+    private void Awake()
     {
         isEmpty = true;
         icon = transform.GetChild(0).gameObject;

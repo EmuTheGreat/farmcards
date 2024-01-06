@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour, ISaveState
@@ -11,20 +12,36 @@ public class InventoryManager : MonoBehaviour, ISaveState
     [SerializeField]
     private ObjectsDatabaseSO dataBase;
 
-    private void Start()
+
+    private void Awake()
     {
         for (int i = 0; i < inventoryPanel.childCount; i++)
         {
             inventorySlots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
         }
-        if (PlayerPrefs.HasKey("Inventory"))
-        {
-            Load();
-        }
+    }
+
+    private void Start()
+    {
+        Load();
     }
 
     public void AddItem(ItemScriptableObject item)
     {
+        //if (item == null)
+        //{
+        //    Debug.LogError("Попытка добавить null-элемент в инвентарь.");
+        //    return;
+        //}
+        //if (inventorySlots == null)
+        //{
+        //    Debug.LogError("InventorySlots is null");
+        //    return;
+        //}
+        //if (inventorySlots.Any(x => x == null))
+        //{
+        //    Debug.LogError("Slot is null");
+        //}
         foreach (InventorySlot slot in inventorySlots)
         {
             if (item == slot.item)
