@@ -160,6 +160,7 @@ public class PlacementSystem : MonoBehaviour
         if (placementData.placedObjects.TryGetValue(gridPosition, out data) && data.ID == 2)
         {
             Debug.Log("Загон!");
+            return true;
         }
 
         return false;
@@ -176,7 +177,7 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = GetGridPosition();
 
         IslandBuilding island;
-        if (CheckBuild(out island))
+        if (/*CheckAnimalContainer((Vector2Int)gridPosition) || */CheckBuild(out island))
         {
             previewRenderer.material.color = Color.white;
         }

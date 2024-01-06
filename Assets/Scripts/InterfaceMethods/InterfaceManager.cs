@@ -40,9 +40,9 @@ public class InterfaceManager : MonoBehaviour, ISaveState
         }
     }
 
-    public void SetWater()
+    public void SetWater(int value = 0)
     {
-        water += waterSum;
+        water += waterSum + value;
         waterText.text = water.ToString();
     }
 

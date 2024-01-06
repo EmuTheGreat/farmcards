@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Logic : MonoBehaviour, ISaveState
 {
@@ -23,9 +24,11 @@ public class Logic : MonoBehaviour, ISaveState
     public int paymentCost = 100;
     public int paymentDay = 10;
     private HashSet<Vector2> occupied;
+    private HashSet<Claster4> clasters4;
 
     private void Awake()
     {
+        clasters4 = new HashSet<Claster4>();
         islands = new();
         occupied = new HashSet<Vector2>();
         if (PlayerPrefs.HasKey("PaymentCost"))
@@ -47,6 +50,7 @@ public class Logic : MonoBehaviour, ISaveState
     public void NextDay()
     {
         islands = GetIslands();
+        GetClasters();
         Harvest1();
         interfaceManager.SetDay(1);
         interfaceManager.SetWater();
@@ -65,6 +69,23 @@ public class Logic : MonoBehaviour, ISaveState
         }
     }
 
+    private void GetClasters()
+    {
+        foreach (IslandBuilding island in islands)
+        {
+            var sortedList = island.placedObjects.OrderBy(x => x.y).ThenBy(x => x.x).ToList();
+            foreach (var placedObject in sortedList)
+            {
+                PlacementData data;
+                if (placementSystem.placementData.placedObjects.TryGetValue(placedObject, out data))
+                {
+                    TryFindClaster4(data.ID, placedObject);
+                }
+            }
+        }
+        //Debug.Log(clasters4.Count);
+    }
+
     private void Harvest1()
     {
         foreach (IslandBuilding island in islands)
@@ -75,11 +96,20 @@ public class Logic : MonoBehaviour, ISaveState
                 PlacementData data;
                 if (placementSystem.placementData.placedObjects.TryGetValue(placedObject, out data))
                 {
-                    TryFindGroupFour(data.ID, placedObject);
-                    if (!occupied.Contains(placedObject) && dataBase.objectsData[data.ID].Item != null)
+                    if (dataBase.objectsData[data.ID].Item != null)
                     {
                         inventoryManager.AddItem(dataBase.objectsData[data.ID].Item);
                     }
+                }
+            }
+        }
+        foreach (var claster in clasters4)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                if (dataBase.objectsData[claster.id].Item != null)
+                {
+                    inventoryManager.AddItem(dataBase.objectsData[claster.id].Item);
                 }
             }
         }
@@ -116,7 +146,7 @@ public class Logic : MonoBehaviour, ISaveState
         List<Vector2Int> dirs = new() { new(1, 0), new(1, -1), new(0, -1) };
         foreach (var dir in dirs)
         {
-            if (!placementSystem.placementData.placedObjects.ContainsKey(pos + dir) || placementSystem.placementData.placedObjects[pos+dir].ID != id)
+            if (!placementSystem.placementData.placedObjects.ContainsKey(pos + dir) || placementSystem.placementData.placedObjects[pos + dir].ID != id)
             {
                 return false;
             }
@@ -132,6 +162,32 @@ public class Logic : MonoBehaviour, ISaveState
                 occupied.Add(pos + dir);
             }
         }
+        return true;
+    }
+
+    private bool TryFindClaster4(int id, Vector2 pos)
+    {
+        List<Vector2Int> dirs = new() { new(0, 0), new(1, 0), new(1, -1), new(0, -1) };
+        foreach (var dir in dirs)
+        {
+            var newPos = pos + dir;
+
+            if (clasters4.Any(x => x.objects.Contains(newPos)) || !placementSystem.placementData.placedObjects.ContainsKey(newPos) || placementSystem.placementData.placedObjects[newPos].ID != id)
+            {
+                return false;
+            }
+        }
+
+        Claster4 claster = new Claster4();
+        claster.id = id;
+        claster.objects = new()
+            {
+                pos + dirs[0],
+                pos + dirs[1],
+                pos + dirs[2],
+                pos + dirs[3],
+            };
+        clasters4.Add(claster);
         return true;
     }
 
@@ -151,4 +207,10 @@ public class Logic : MonoBehaviour, ISaveState
             paymentDay = PlayerPrefs.GetInt("PaymentDay");
         }
     }
+}
+
+public class Claster4
+{
+    public List<Vector2> objects;
+    public int id;
 }
