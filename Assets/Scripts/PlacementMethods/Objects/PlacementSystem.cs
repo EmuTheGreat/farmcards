@@ -36,6 +36,9 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private IslandsPlacementSystem islandsPlacementSystem;
 
+    [SerializeField]
+    private SaveObk saveObk;
+
     public GridData placementData = new();
 
     private Renderer previewRenderer;
@@ -92,7 +95,45 @@ public class PlacementSystem : MonoBehaviour
         {
             if (CheckAnimalContainer((Vector2Int)gridPosition))
             {
-                return;
+                foreach (var e in saveObk.animalContainers)
+                {
+                    if (e.occupiedPosition.Contains((Vector2Int)gridPosition))
+                    {
+                        // Instantiate тут
+                        e.idOfAnimals.Add(selectedObjectIndex);
+
+                        IslandBuilding island;
+                        CheckBuild(out island);
+
+                        GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
+                        newObject.transform.position = grid.CellToWorld(gridPosition);
+                        audioSource.PlayOneShot(sound);
+                        placedGameObject.Add(newObject);
+                        GridData selectedData = placementData;
+
+                        //Создание животного в загоне, выдаёт ошибку.
+                        //Позицибю нужно высчитывать или вообще не добавлять в общий список объектов.
+
+                        //selectedData.AddObjectAt(gridPosition,
+                        //    dataBase.objectsData[selectedObjectIndex].Size,
+                        //    dataBase.objectsData[selectedObjectIndex].ID);
+
+                        inputManager.OnEsq += () => Destroy(clickedButton);
+                        inputManager.flag = true;
+                        
+                        // Как вариант, добавить ещё один список только для животных.
+                        // Добавлять в общий необязяталельно - он только для проверки на возможность установки.
+                        //island.placedObjects.Add((Vector2Int)gridPosition);
+
+                        foreach (var m in saveObk.animalContainers)
+                        {
+                            foreach (var n in m.idOfAnimals)
+                            {
+                                Debug.Log(n);
+                            }
+                        }
+                    }
+                }
             }
         }
         else
@@ -117,6 +158,14 @@ public class PlacementSystem : MonoBehaviour
                 inputManager.OnEsq += () => Destroy(clickedButton);
                 inputManager.flag = true;
                 island.placedObjects.Add((Vector2Int)gridPosition);
+
+                if (dataBase.objectsData[selectedObjectIndex].ID == 2)
+                {
+                    AnimalContainerToSave animalContainer = new();
+                    var occupied = placementData.CalculatePositions(gridPosition, new(2, 2));
+                    animalContainer.occupiedPosition = occupied;
+                    saveObk.animalContainers.Add(animalContainer);
+                }
             }
         }
     }
@@ -157,13 +206,7 @@ public class PlacementSystem : MonoBehaviour
     public bool CheckAnimalContainer(Vector2Int gridPosition)
     {
         PlacementData data;
-        if (placementData.placedObjects.TryGetValue(gridPosition, out data) && data.ID == 2)
-        {
-            Debug.Log("Загон!");
-            return true;
-        }
-
-        return false;
+        return placementData.placedObjects.TryGetValue(gridPosition, out data) && data.ID == 2;
     }
 
 
@@ -173,15 +216,25 @@ public class PlacementSystem : MonoBehaviour
         {
             return;
         }
-
+        bool flag = true;
         Vector3Int gridPosition = GetGridPosition();
 
         IslandBuilding island;
-        if (CheckAnimalContainer((Vector2Int)gridPosition) || CheckBuild(out island))
+
+        if (CheckBuild(out island) && flag)
         {
             previewRenderer.material.color = Color.white;
         }
         else
+        {
+            previewRenderer.material.color = Color.red;
+        }
+
+        if (selectedObjectIndex != 1 && dataBase.objectsData[selectedObjectIndex].Type == ObjectType.Animal && CheckAnimalContainer((Vector2Int)gridPosition))
+        {
+            previewRenderer.material.color = Color.white;
+        }
+        else if (selectedObjectIndex != 1 && dataBase.objectsData[selectedObjectIndex].Type == ObjectType.Animal && !CheckAnimalContainer((Vector2Int)gridPosition))
         {
             previewRenderer.material.color = Color.red;
         }

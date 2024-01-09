@@ -6386,6 +6386,7 @@ MonoBehaviour:
   parentForObjects: {fileID: 1583838450}
   colliders: {fileID: 558948616}
   islandsPlacementSystem: {fileID: 496664914}
+  saveObk: {fileID: 1870288743}
   volumeParameter: CardVol
   audioMixer: {fileID: 24100000, guid: d241271f0c9fdf5449acb8adb5b65104, type: 2}
   sound: {fileID: 8300000, guid: 1ff74fa1c87f52241939ba16d40c0a0b, type: 3}
@@ -11423,6 +11424,7 @@ MonoBehaviour:
   dataBase: {fileID: 11400000, guid: f497121e3f81e1447b11d7fa646e9774, type: 2}
   objectsManager: {fileID: 1533001899}
   parentForObjects: {fileID: 1583838450}
+  animalContainers: []
 --- !u!4 &1870288744
 Transform:
   m_ObjectHideFlags: 0

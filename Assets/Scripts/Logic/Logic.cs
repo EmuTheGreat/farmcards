@@ -79,7 +79,7 @@ public class Logic : MonoBehaviour, ISaveState
                 PlacementData data;
                 if (placementSystem.placementData.placedObjects.TryGetValue(placedObject, out data))
                 {
-                    if (dataBase.objectsData[data.ID].Type != ObjectType.Structure)
+                    if (dataBase.objectsData[data.ID].Type == ObjectType.Plant)
                     {
                         TryFindClaster4(data.ID, placedObject);
                     }

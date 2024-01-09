@@ -18,6 +18,8 @@ public class SaveObk : MonoBehaviour, ISaveState
     [SerializeField]
     private GameObject parentForObjects;
 
+    public List<AnimalContainerToSave> animalContainers;
+
 
     public void Save()
     {
@@ -105,4 +107,12 @@ public class ListContainer<T>
     {
         this.list = list;
     }
+}
+
+[Serializable]
+public class AnimalContainerToSave
+{
+    public List<Vector2Int> occupiedPosition;
+    public List<int> idOfAnimals = new();
+    public int capacity = 10;
 }
