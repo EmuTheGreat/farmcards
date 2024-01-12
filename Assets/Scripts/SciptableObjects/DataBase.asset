@@ -23,7 +23,10 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 5837591200865036453, guid: 919519eee3c7895448a79107b0c6c386, type: 3}
     <Sprite>k__BackingField: {fileID: 1592252987, guid: f07509a37e159064fa88705673a14d22, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: de83ececde91f5848a38ddedbbd7d0f3, type: 3}
+    <FoodItem>k__BackingField: {fileID: 0}
+    <FoodItemAmount>k__BackingField: 0
     <Item>k__BackingField: {fileID: 11400000, guid: 0d4335acff5986043a685bc01bf15bc7, type: 2}
+    <ItemAmount>k__BackingField: 1
     <Weight>k__BackingField: 4
     <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
       \u043A\u0443\u043A\u0443\u0440\u0443\u0437\u0443"
@@ -37,7 +40,10 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 9113867764294389787, guid: 511d6fe13dcf3a84e94fd7dd36bb7976, type: 3}
     <Sprite>k__BackingField: {fileID: -1343725135, guid: f07509a37e159064fa88705673a14d22, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: de83ececde91f5848a38ddedbbd7d0f3, type: 3}
+    <FoodItem>k__BackingField: {fileID: 0}
+    <FoodItemAmount>k__BackingField: 0
     <Item>k__BackingField: {fileID: 11400000, guid: d9e12c5dc3c72404d8970466cda4f576, type: 2}
+    <ItemAmount>k__BackingField: 1
     <Weight>k__BackingField: 3
     <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
       \u043F\u043E\u043C\u0438\u0434\u043E\u0440"
@@ -51,7 +57,10 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 3992885414807039296, guid: 4d760806984d0234897c927d0eb6c0a9, type: 3}
     <Sprite>k__BackingField: {fileID: 21300000, guid: 2df4e51effcaa6a469433a28c973cb77, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: b9532c6e159edc840a7ad7f0c86685c3, type: 3}
+    <FoodItem>k__BackingField: {fileID: 0}
+    <FoodItemAmount>k__BackingField: 0
     <Item>k__BackingField: {fileID: 0}
+    <ItemAmount>k__BackingField: 0
     <Weight>k__BackingField: 1
     <Description>k__BackingField: "\u0421\u043E\u0434\u0435\u0440\u0436\u0438\u0442
       \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u0445"
@@ -65,7 +74,10 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 9148707920300417990, guid: bc8a6ee062a796c44a099b369c9cbed2, type: 3}
     <Sprite>k__BackingField: {fileID: 1742330285, guid: f07509a37e159064fa88705673a14d22, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: b9532c6e159edc840a7ad7f0c86685c3, type: 3}
+    <FoodItem>k__BackingField: {fileID: 0}
+    <FoodItemAmount>k__BackingField: 0
     <Item>k__BackingField: {fileID: 0}
+    <ItemAmount>k__BackingField: 0
     <Weight>k__BackingField: 2
     <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
       \u0432\u043E\u0434\u0443"
@@ -79,6 +91,9 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 3771095593146164955, guid: 01770c7d395a4da4494308cda0bae29a, type: 3}
     <Sprite>k__BackingField: {fileID: 21300000, guid: 9ac0f8112a83c8340bd0858e760f54ae, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: b9532c6e159edc840a7ad7f0c86685c3, type: 3}
-    <Item>k__BackingField: {fileID: 0}
+    <FoodItem>k__BackingField: {fileID: 11400000, guid: 0d4335acff5986043a685bc01bf15bc7, type: 2}
+    <FoodItemAmount>k__BackingField: 1
+    <Item>k__BackingField: {fileID: 11400000, guid: ee7542a43b701ca4d9d7a5d189e20aae, type: 2}
+    <ItemAmount>k__BackingField: 1
     <Weight>k__BackingField: 2
     <Description>k__BackingField: "\u041A\u043E\u0440\u043E\u0432\u0430"
