@@ -17,7 +17,6 @@ public class Animal : MonoBehaviour
     private void Start()
     {
         pos = transform.position;
-        Debug.Log(pos);
         minX = pos.x - 0.5f;
         maxX = pos.x + 0.5f;
 

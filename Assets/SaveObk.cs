@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ public class SaveObk : MonoBehaviour, ISaveState
         for (var i = 0; i < islandlist.transform.childCount; i++)
         {
             var temp = islandlist.transform.GetChild(i).GetComponent<IslandBuilding>();
-            Island island = new Island(temp.placedObjects, temp.transform.position);
+            Island island = new Island(temp.placedObjects, temp.transform.position, temp.animals);
             islandBuildings.Add(island);
         }
         string jsonIsland = JsonUtility.ToJson(new ListContainer<Island>(islandBuildings));
@@ -81,6 +82,27 @@ public class SaveObk : MonoBehaviour, ISaveState
                     loadObject.transform.position = placedObject;
                     var creatingIsland = loadIsland.GetComponent<IslandBuilding>();
                     creatingIsland.placedObjects.Add(placedObject);
+
+                    if (placedObjects[placedObject].ID == 2)
+                    {
+                        AnimalContainerToSave animalContainer = new();
+                        animalContainer.occupiedPosition = placedObjects[placedObject].occupiedPositions;
+                        loadObject.GetComponent<AnimalContainer>().occupiedPosition = animalContainer.occupiedPosition;
+                        //foreach (var e in occupied) Debug.Log(e);
+                        //Debug.Log(island.animals.Count);
+                    }
+                }
+
+                foreach (var animalContainer in island.animals)
+                {
+                    var creatingIsland = loadIsland.GetComponent<IslandBuilding>();
+                    creatingIsland.animals.Add(animalContainer);
+                    foreach (var animal in animalContainer.idOfAnimals)
+                    {
+                        GameObject newObject = Instantiate(dataBase.objectsData[animal].Prefab, parentForObjects.transform);
+                        Vector2 position = new(animalContainer.occupiedPosition[1].x + 0.470f, animalContainer.occupiedPosition[1].y + 0.270f);
+                        newObject.transform.position = position;
+                    }
                 }
             }
             objectsManager.UpdateDrawObjects();
@@ -114,5 +136,5 @@ public class AnimalContainerToSave
 {
     public List<Vector2Int> occupiedPosition;
     public List<int> idOfAnimals = new();
-    public int capacity = 10;
+    public int capacity = 4;
 }

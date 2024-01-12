@@ -7,6 +7,7 @@ public class Island
 {
     public List<Vector2> placementData;
     public Vector3 islandPos;
+    public List<AnimalContainerToSave> animals;
 
     public Island()
     {
@@ -14,9 +15,10 @@ public class Island
         islandPos = Vector3.zero;
     }
 
-    public Island(List<Vector2> placementData, Vector3 position)
+    public Island(List<Vector2> placementData, Vector3 position, List<AnimalContainerToSave> animals)
     {
         this.placementData = placementData;
         islandPos = position;
+        this.animals = animals;
     }
 }

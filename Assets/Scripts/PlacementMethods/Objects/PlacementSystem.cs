@@ -39,6 +39,9 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private SaveObk saveObk;
 
+    [SerializeField]
+    private Logic logic;
+
     public GridData placementData = new();
 
     private Renderer previewRenderer;
@@ -75,6 +78,8 @@ public class PlacementSystem : MonoBehaviour
         inputManager.currentWater = dataBase.objectsData[selectedObjectIndex].WaterCost;
         inputManager.buildingsCost = dataBase.objectsData[selectedObjectIndex].BuildingsCost;
 
+        if (dataBase.objectsData[selectedObjectIndex].Type == ObjectType.Animal) logic.ShowContainerCapacity();
+
 
         if (selectedObjectIndex < 0)
         {
@@ -98,7 +103,7 @@ public class PlacementSystem : MonoBehaviour
                 CheckBuild(out island);
                 foreach (var container in island.animals)
                 {
-                    if (container.occupiedPosition.Contains((Vector2Int)gridPosition))
+                    if (container.occupiedPosition.Contains((Vector2Int)gridPosition) && container.capacity > 0)
                     {
                         container.idOfAnimals.Add(selectedObjectIndex);
 
@@ -108,7 +113,6 @@ public class PlacementSystem : MonoBehaviour
                         placedGameObject.Add(newObject);
 
                         Vector2 position = new(container.occupiedPosition[1].x + 0.470f, container.occupiedPosition[1].y + 0.270f);
-
                         newObject.transform.position = position;
                         //Позицибю нужно высчитывать или вообще не добавлять в общий список объектов.
 
@@ -118,7 +122,7 @@ public class PlacementSystem : MonoBehaviour
                         // Как вариант, добавить ещё один список только для животных.
                         // Добавлять в общий необязяталельно - он только для проверки на возможность установки.
                         //island.placedObjects.Add((Vector2Int)gridPosition);
-
+                        container.capacity--;
                         break;
                     }
                 }
@@ -152,8 +156,9 @@ public class PlacementSystem : MonoBehaviour
                     AnimalContainerToSave animalContainer = new();
                     var occupied = placementData.CalculatePositions(gridPosition, new(2, 2));
                     animalContainer.occupiedPosition = occupied;
+                    newObject.GetComponent<AnimalContainer>().occupiedPosition = occupied;
                     island.animals.Add(animalContainer);
-                    foreach (var e in occupied) Debug.Log(e);
+                    //foreach (var e in occupied) Debug.Log(e);
                     //Debug.Log(island.animals.Count);
                 }
             }
@@ -170,6 +175,7 @@ public class PlacementSystem : MonoBehaviour
     {
         selectedObjectIndex = -1;
 
+        logic.HideContainerCapacity();
         gridVisualisation.SetActive(false);
         cellIndicator.SetActive(false);
 
@@ -230,6 +236,8 @@ public class PlacementSystem : MonoBehaviour
 
         cellIndicator.transform.position = grid.CellToWorld(gridPosition);
     }
+
+
 
     private Vector3Int GetGridPosition() => grid.WorldToCell(GetMousePositon());
     private Vector3 GetMousePositon() => inputManager.GetSelectedMapPosition();

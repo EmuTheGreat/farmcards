@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class Logic : MonoBehaviour, ISaveState
@@ -17,6 +19,8 @@ public class Logic : MonoBehaviour, ISaveState
     private PlacementSystem placementSystem;
     [SerializeField]
     private IslandsColliders islandsList;
+    [SerializeField]
+    private GameObject objectsList;
 
     private List<IslandBuilding> islands;
     private int islandsCounter = 0;
@@ -120,6 +124,52 @@ public class Logic : MonoBehaviour, ISaveState
             }
         }
     }
+
+    public void ShowContainerCapacity()
+    {
+        foreach (var island in islands)
+        {
+            foreach (var container in island.animals)
+            {
+                for (int i = 0; i < objectsList.transform.childCount; i++)
+                {
+                    var animalContainer = objectsList.transform.GetChild(i).GetComponent<AnimalContainer>();
+                    if (animalContainer != null)
+                    {
+                        if (animalContainer.occupiedPosition.SequenceEqual(container.occupiedPosition))
+                        {
+                            animalContainer.capacityText.text = $"{container.capacity}/4";
+                            animalContainer.capacityText.gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            //foreach(var e in container.occupiedPosition)
+                            //{
+                            //    Debug.Log(e);
+                            //}
+                            //foreach (var e in animalContainer.occupiedPosition)
+                            //{
+                            //    Debug.Log(e);
+                            //}
+                        }
+                    }    
+                }
+            }
+        }
+    }
+
+    public void HideContainerCapacity()
+    {
+        for (int i = 0; i < objectsList.transform.childCount; i++)
+        {
+            var animalContainer = objectsList.transform.GetChild(i).GetComponent<AnimalContainer>();
+            if (animalContainer != null)
+            {
+                animalContainer.capacityText.gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void HarvestAnimals()
     {
         foreach (var island in islands)
