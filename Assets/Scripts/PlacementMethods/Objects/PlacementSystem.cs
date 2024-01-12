@@ -58,7 +58,6 @@ public class PlacementSystem : MonoBehaviour
     private void Start()
     {
         StopPlacement();
-        //placementData = new();
         previewRenderer = cellIndicator.transform.GetChild(0).GetComponent<SpriteRenderer>();
         var volumeValue = PlayerPrefs.GetFloat(volumeParameter, volumeParameter == "CardVol" ? 0f : -30f);
         audioMixer.SetFloat(volumeParameter, volumeValue);
@@ -95,43 +94,32 @@ public class PlacementSystem : MonoBehaviour
         {
             if (CheckAnimalContainer((Vector2Int)gridPosition))
             {
-                foreach (var e in saveObk.animalContainers)
+                IslandBuilding island;
+                CheckBuild(out island);
+                foreach (var container in island.animals)
                 {
-                    if (e.occupiedPosition.Contains((Vector2Int)gridPosition))
+                    if (container.occupiedPosition.Contains((Vector2Int)gridPosition))
                     {
-                        // Instantiate тут
-                        e.idOfAnimals.Add(selectedObjectIndex);
-
-                        IslandBuilding island;
-                        CheckBuild(out island);
+                        container.idOfAnimals.Add(selectedObjectIndex);
 
                         GameObject newObject = Instantiate(dataBase.objectsData[selectedObjectIndex].Prefab, parentForObjects.transform);
-                        newObject.transform.position = grid.CellToWorld(gridPosition);
+                        newObject.transform.position = grid.CellToWorld(gridPosition); // Здесь менять позицию объекта
                         audioSource.PlayOneShot(sound);
                         placedGameObject.Add(newObject);
-                        GridData selectedData = placementData;
 
-                        //Создание животного в загоне, выдаёт ошибку.
+                        Vector2 position = new(container.occupiedPosition[1].x + 0.470f, container.occupiedPosition[1].y + 0.270f);
+
+                        newObject.transform.position = position;
                         //Позицибю нужно высчитывать или вообще не добавлять в общий список объектов.
-
-                        //selectedData.AddObjectAt(gridPosition,
-                        //    dataBase.objectsData[selectedObjectIndex].Size,
-                        //    dataBase.objectsData[selectedObjectIndex].ID);
 
                         inputManager.OnEsq += () => Destroy(clickedButton);
                         inputManager.flag = true;
-                        
+
                         // Как вариант, добавить ещё один список только для животных.
                         // Добавлять в общий необязяталельно - он только для проверки на возможность установки.
                         //island.placedObjects.Add((Vector2Int)gridPosition);
 
-                        foreach (var m in saveObk.animalContainers)
-                        {
-                            foreach (var n in m.idOfAnimals)
-                            {
-                                Debug.Log(n);
-                            }
-                        }
+                        break;
                     }
                 }
             }
@@ -164,7 +152,9 @@ public class PlacementSystem : MonoBehaviour
                     AnimalContainerToSave animalContainer = new();
                     var occupied = placementData.CalculatePositions(gridPosition, new(2, 2));
                     animalContainer.occupiedPosition = occupied;
-                    saveObk.animalContainers.Add(animalContainer);
+                    island.animals.Add(animalContainer);
+                    foreach (var e in occupied) Debug.Log(e);
+                    //Debug.Log(island.animals.Count);
                 }
             }
         }
@@ -216,12 +206,11 @@ public class PlacementSystem : MonoBehaviour
         {
             return;
         }
-        bool flag = true;
         Vector3Int gridPosition = GetGridPosition();
 
         IslandBuilding island;
 
-        if (CheckBuild(out island) && flag)
+        if (CheckBuild(out island))
         {
             previewRenderer.material.color = Color.white;
         }

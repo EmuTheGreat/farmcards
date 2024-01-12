@@ -7,7 +7,8 @@ using UnityEngine;
 public class IslandBuilding : MonoBehaviour
 {
     private Collider2D islandCollider;
-    public List<Vector2> placedObjects = new(); 
+    public List<Vector2> placedObjects = new();
+    public List<AnimalContainerToSave> animals = new();
 
     void Start()
     {

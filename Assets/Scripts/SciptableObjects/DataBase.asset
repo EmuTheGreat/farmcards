@@ -77,7 +77,7 @@ MonoBehaviour:
     <BuildingsCost>k__BackingField: 0
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 3771095593146164955, guid: 01770c7d395a4da4494308cda0bae29a, type: 3}
-    <Sprite>k__BackingField: {fileID: 1742330285, guid: f07509a37e159064fa88705673a14d22, type: 3}
+    <Sprite>k__BackingField: {fileID: 21300000, guid: 9ac0f8112a83c8340bd0858e760f54ae, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: b9532c6e159edc840a7ad7f0c86685c3, type: 3}
     <Item>k__BackingField: {fileID: 0}
     <Weight>k__BackingField: 2

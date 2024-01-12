@@ -18,11 +18,11 @@ public class SaveObk : MonoBehaviour, ISaveState
     [SerializeField]
     private GameObject parentForObjects;
 
-    public List<AnimalContainerToSave> animalContainers;
 
 
     public void Save()
     {
+        //Переделать сохранение, адаптировать под животных!!!
         List<Island> islandBuildings = new List<Island>();
         for (var i = 0; i < islandlist.transform.childCount; i++)
         {

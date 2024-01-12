@@ -16,9 +16,14 @@ public class ObjectsManager : MonoBehaviour
     public void UpdateDrawObjects()
     {
         var e = GetObjectsAndSort();
+        var animals= GetAnimals();
         for (int i = 0; i < e.Count; i++)
         {
             e[i].transform.GetChild(0).GetComponent<Renderer>().sortingOrder = i;
+        }
+        for (int i = 0;i < animals.Count; i++)
+        {
+            animals[i].transform.GetChild(0).GetComponent<Renderer>().sortingOrder = e.Count;
         }
     }
 
@@ -27,8 +32,24 @@ public class ObjectsManager : MonoBehaviour
         var list = new List<Transform>();
         for (int i = 0; i < parent.transform.childCount; i++)
         {
-            list.Add(parent.transform.GetChild(i));
+            if (parent.transform.GetChild(i).GetComponent<Animal>() == null)
+            {
+                list.Add(parent.transform.GetChild(i));
+            }
         }
         return list.OrderByDescending(x => x.transform.position.y).ToList();
+    }
+
+    private List<Transform> GetAnimals()
+    {
+        var list = new List<Transform>();
+        for (int i = 0; i < parent.transform.childCount; i++)
+        {
+            if (parent.transform.GetChild(i).GetComponent<Animal>() != null)
+            {
+                list.Add(parent.transform.GetChild(i));
+            }
+        }
+        return list;
     }
 }
