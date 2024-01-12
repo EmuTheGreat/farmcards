@@ -41,8 +41,17 @@ public class ObjectData
     public Sprite Background {  get; private set; }
 
     [field: SerializeField]
+    public ItemScriptableObject FoodItem { get; private set; }
+
+    [field: SerializeField]
+    public int FoodItemAmount { get; private set; }
+
+    [field: SerializeField]
     public ItemScriptableObject Item { get; private set; }
-    
+
+    [field: SerializeField]
+    public int ItemAmount { get; private set; }
+
     [field: SerializeField]
     public int Weight { get; private set; }
 

@@ -25,6 +25,8 @@ public class Logic : MonoBehaviour, ISaveState
     private HashSet<Vector2> occupied;
     private HashSet<Claster4> clasters4;
 
+    private List<ItemScriptableObject> itemsToAdd = new();
+
     private void Awake()
     {
         clasters4 = new HashSet<Claster4>();
@@ -51,6 +53,7 @@ public class Logic : MonoBehaviour, ISaveState
         islands = GetIslands();
         GetClasters();
         Harvest1();
+        HarvestAnimals();
         interfaceManager.SetDay(1);
         interfaceManager.SetWater();
         interfaceManager.SetBalance(-interfaceManager.buildingsCost);
@@ -105,6 +108,7 @@ public class Logic : MonoBehaviour, ISaveState
                 }
             }
         }
+
         foreach (var claster in clasters4)
         {
             for (int i = 0; i < 2; i++)
@@ -115,6 +119,28 @@ public class Logic : MonoBehaviour, ISaveState
                 }
             }
         }
+    }
+    private void HarvestAnimals()
+    {
+        foreach (var island in islands)
+        {
+            foreach (var container in island.animals)
+            {
+                foreach (var animal in container.idOfAnimals)
+                {
+                    if (inventoryManager.DeleteItems(dataBase.objectsData[animal].FoodItemAmount, dataBase.objectsData[animal].FoodItem))
+                    {
+                        itemsToAdd.Add(dataBase.objectsData[animal].Item);
+                    }
+                }
+            }
+        }
+
+        foreach (var item in itemsToAdd)
+        {
+            inventoryManager.AddItem(item);
+        }
+        itemsToAdd = new();
     }
 
     #region old code

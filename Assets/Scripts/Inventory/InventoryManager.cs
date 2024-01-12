@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour, ISaveState
 {
@@ -85,6 +86,21 @@ public class InventoryManager : MonoBehaviour, ISaveState
         slot.isEmpty = true;
         slot.textItemAmount.text = string.Empty;
         slot.DeleteIcon();
+    }
+
+    public bool DeleteItems(int amount, ItemScriptableObject item)
+    {
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            if (item == slot.item && amount <= slot.amount)
+            {
+                slot.amount -= amount;
+                slot.textItemAmount.text = slot.amount.ToString();
+                if (slot.amount == 0) DeleteItem(slot);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void Save()
