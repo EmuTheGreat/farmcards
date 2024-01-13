@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b5becd571ee8a45abca6724e4c1833, type: 3}
-  m_Name: Corn
+  m_Name: Corn 1
   m_EditorClassIdentifier: 
-  itemName: Wheat
-  sprite: {fileID: 1167709036, guid: f07509a37e159064fa88705673a14d22, type: 3}
-  Id: 0
-  Price: 2
+  itemName: Corn
+  sprite: {fileID: 21300000, guid: 25a175a046de91544bb44e3f765c2076, type: 3}
+  Id: 5
+  Price: 8

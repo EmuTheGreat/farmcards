@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,10 @@ public class Logic : MonoBehaviour, ISaveState
     private IslandsColliders islandsList;
     [SerializeField]
     private GameObject objectsList;
+    [SerializeField]
+    private GetCard getCard;
+    [SerializeField]
+    private PauseMenu pauseMenu;
 
     private List<IslandBuilding> islands;
     private int islandsCounter = 0;
@@ -31,6 +36,9 @@ public class Logic : MonoBehaviour, ISaveState
     private HashSet<Vector2> occupied;
     private HashSet<Claster4> clasters4;
 
+    private int dayCounter;
+    private int waterCounter;
+
     private List<ItemScriptableObject> itemsToAdd = new();
 
     private void Awake()
@@ -38,6 +46,8 @@ public class Logic : MonoBehaviour, ISaveState
         clasters4 = new HashSet<Claster4>();
         islands = new();
         occupied = new HashSet<Vector2>();
+        dayCounter = 0;
+        waterCounter = 0;
         if (PlayerPrefs.HasKey("PaymentCost"))
         {
             Load();
@@ -66,6 +76,32 @@ public class Logic : MonoBehaviour, ISaveState
         interfaceManager.SetPaymentsMessage(paymentCost, paymentDay - interfaceManager.day);
         UpdatePaymentsParams();
         turnInventory.UpdateSellPrice();
+
+        if (interfaceManager.balance < 0)
+        {
+            dayCounter++;
+        }
+        else
+        {
+            dayCounter = 0;
+        }
+
+        if (interfaceManager.water < 0)
+        {
+            waterCounter++;
+        }
+        else
+        {
+            waterCounter = 0;
+        }
+        if (dayCounter == 4 || waterCounter == 4)
+        {
+            Debug.Log("Игра проиграна!");
+            pauseMenu.GameOver();
+        }
+        Console.Clear();
+        Debug.Log(waterCounter + "- вода");
+        Debug.Log(dayCounter + "- деньги");
     }
 
     private void UpdatePaymentsParams()
@@ -75,6 +111,7 @@ public class Logic : MonoBehaviour, ISaveState
             interfaceManager.SetBalance(-paymentCost);
             paymentCost += 20;
             paymentDay += 10;
+            getCard.MakeChoice();
         }
     }
 
@@ -155,7 +192,7 @@ public class Logic : MonoBehaviour, ISaveState
                             //    Debug.Log(e);
                             //}
                         }
-                    }    
+                    }
                 }
             }
         }

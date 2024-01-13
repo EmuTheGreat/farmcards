@@ -175,5 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eceaac49442292c48bbf925b2d54d301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentCollider: {fileID: 0}
-  animalCollider: {fileID: 0}
+  pos: {x: 0, y: 0}
+  minX: 0
+  maxX: 0
+  movementSpeed: 1
+  moveInterval: 3
+  stopTime: 5
+  resumeTime: 3

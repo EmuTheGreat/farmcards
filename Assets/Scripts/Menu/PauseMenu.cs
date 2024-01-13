@@ -8,6 +8,12 @@ public class PauseMenu : MonoBehaviour
 {
     public bool PauseGame;
     public GameObject pauseGameManu;
+    public GameObject gameOverMenu;
+
+    private void Start()
+    {
+        gameOverMenu.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,6 +36,34 @@ public class PauseMenu : MonoBehaviour
         pauseGameManu.SetActive(true);
         Time.timeScale = 0f;
         PauseGame = true;
+    }
+
+    public void GameOver()
+    {
+        gameOverMenu.SetActive(true);
+        Time.timeScale = 0f;
+        PauseGame = true;
+
+        PlayerPrefs.DeleteKey("Balance");
+        PlayerPrefs.DeleteKey("Water");
+        PlayerPrefs.DeleteKey("Day");
+        PlayerPrefs.DeleteKey("WaterSum");
+
+
+        PlayerPrefs.DeleteKey("Islands");
+        PlayerPrefs.DeleteKey("PlacedIslands");
+        PlayerPrefs.DeleteKey("KeyObjects");
+        PlayerPrefs.DeleteKey("ValueObjects");
+
+        PlayerPrefs.DeleteKey("PaymentCost");
+        PlayerPrefs.DeleteKey("PaymentDay");
+        PlayerPrefs.DeleteKey("IslandCost");
+
+        PlayerPrefs.DeleteKey("Inventory");
+
+        PlayerPrefs.DeleteKey("CardsInHand");
+        PlayerPrefs.DeleteKey("IndexInRotation");
+        PlayerPrefs.DeleteKey("CardsInHand");
     }
 
     public void Resume()

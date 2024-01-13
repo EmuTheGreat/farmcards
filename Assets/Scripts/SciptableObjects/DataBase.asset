@@ -47,7 +47,8 @@ MonoBehaviour:
     <ItemAmount>k__BackingField: 1
     <Weight>k__BackingField: 3
     <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
-      \u043F\u043E\u043C\u0438\u0434\u043E\u0440"
+      1 \u043F\u043E\u043C\u0438\u0434\u043E\u0440      4 \u0440\u044F\u0434\u043E\u043C-1.5x
+      \u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0438\u0438"
   - <Name>k__BackingField: "\u0417\u0430\u0433\u043E\u043D"
     <Type>k__BackingField: 2
     <ID>k__BackingField: 2
@@ -69,17 +70,17 @@ MonoBehaviour:
     <Type>k__BackingField: 2
     <ID>k__BackingField: 3
     <Cost>k__BackingField: 20
-    <WaterCost>k__BackingField: 8
+    <WaterCost>k__BackingField: 10
     <BuildingsCost>k__BackingField: 10
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 9148707920300417990, guid: bc8a6ee062a796c44a099b369c9cbed2, type: 3}
-    <Sprite>k__BackingField: {fileID: 1742330285, guid: f07509a37e159064fa88705673a14d22, type: 3}
+    <Sprite>k__BackingField: {fileID: 21300000, guid: 81a9b6bc71787a84fbc2b2a799276289, type: 3}
     <Background>k__BackingField: {fileID: 21300000, guid: b9532c6e159edc840a7ad7f0c86685c3, type: 3}
     <FoodItem>k__BackingField: {fileID: 0}
     <FoodItemAmount>k__BackingField: 0
     <Item>k__BackingField: {fileID: 0}
     <ItemAmount>k__BackingField: 0
-    <Weight>k__BackingField: 2
+    <Weight>k__BackingField: 3
     <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
       \u0432\u043E\u0434\u0443"
   - <Name>k__BackingField: "\u041A\u043E\u0440\u043E\u0432\u0430"
@@ -97,4 +98,58 @@ MonoBehaviour:
     <Item>k__BackingField: {fileID: 11400000, guid: ee7542a43b701ca4d9d7a5d189e20aae, type: 2}
     <ItemAmount>k__BackingField: 1
     <Weight>k__BackingField: 2
-    <Description>k__BackingField: "\u041A\u043E\u0440\u043E\u0432\u0430"
+    <Description>k__BackingField: "\u041F\u043E\u0442\u0440\u0435\u0431\u043B\u044F\u0435\u0442
+      1 \u043F\u0448\u0435\u043D\u0438\u0446\u0443 \u0432\u0437\u0430\u043C\u0435\u043D
+      \u043F\u0440\u0438\u043D\u043E\u0441\u0438\u0442 1 \u043C\u043E\u043B\u043E\u043A\u043E"
+  - <Name>k__BackingField: "\u041A\u0443\u043A\u0443\u0440\u0443\u0437\u0430"
+    <Type>k__BackingField: 0
+    <ID>k__BackingField: 5
+    <Cost>k__BackingField: 15
+    <WaterCost>k__BackingField: -8
+    <BuildingsCost>k__BackingField: 0
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 5215856826515398850, guid: 1f3a81bf2662f2340b175543c97e1fbb, type: 3}
+    <Sprite>k__BackingField: {fileID: 21300000, guid: 620c4597573c2884e80c6c5fadfa9ef5, type: 3}
+    <Background>k__BackingField: {fileID: 21300000, guid: de83ececde91f5848a38ddedbbd7d0f3, type: 3}
+    <FoodItem>k__BackingField: {fileID: 0}
+    <FoodItemAmount>k__BackingField: 0
+    <Item>k__BackingField: {fileID: 11400000, guid: 4c2a11d5abda09a42a963c01e42757c0, type: 2}
+    <ItemAmount>k__BackingField: 1
+    <Weight>k__BackingField: 3
+    <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
+      \u043A\u0443\u043A\u0443\u0440\u0443\u0437\u0443"
+  - <Name>k__BackingField: "\u0420\u0435\u0434\u0438\u0441"
+    <Type>k__BackingField: 0
+    <ID>k__BackingField: 6
+    <Cost>k__BackingField: 20
+    <WaterCost>k__BackingField: -16
+    <BuildingsCost>k__BackingField: 0
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 1514884656638244511, guid: 007ff8cbf40cef9499de8677bd66ac1f, type: 3}
+    <Sprite>k__BackingField: {fileID: 21300000, guid: 04021fdbd7f07094ca78c8e86b0ea28a, type: 3}
+    <Background>k__BackingField: {fileID: 21300000, guid: de83ececde91f5848a38ddedbbd7d0f3, type: 3}
+    <FoodItem>k__BackingField: {fileID: 0}
+    <FoodItemAmount>k__BackingField: 0
+    <Item>k__BackingField: {fileID: 11400000, guid: 28d5a7c760e9ae34c894ad7d1b3f93fc, type: 2}
+    <ItemAmount>k__BackingField: 1
+    <Weight>k__BackingField: 3
+    <Description>k__BackingField: "\u041F\u0440\u0438\u043D\u043E\u0441\u0438\u0442
+      \u0440\u0435\u0434\u0438\u0441"
+  - <Name>k__BackingField: "\u041A\u0443\u0440\u0438\u0446\u0430"
+    <Type>k__BackingField: 1
+    <ID>k__BackingField: 7
+    <Cost>k__BackingField: 20
+    <WaterCost>k__BackingField: 0
+    <BuildingsCost>k__BackingField: 0
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 1377981062246395537, guid: 41ff0f58224f6134d9a14ef6b1ad7615, type: 3}
+    <Sprite>k__BackingField: {fileID: 21300000, guid: 62732231623157e4da2bca556539c930, type: 3}
+    <Background>k__BackingField: {fileID: 21300000, guid: b9532c6e159edc840a7ad7f0c86685c3, type: 3}
+    <FoodItem>k__BackingField: {fileID: 11400000, guid: 4c2a11d5abda09a42a963c01e42757c0, type: 2}
+    <FoodItemAmount>k__BackingField: 2
+    <Item>k__BackingField: {fileID: 11400000, guid: 273896b7a8caa324ab7267d6ca111d7f, type: 2}
+    <ItemAmount>k__BackingField: 1
+    <Weight>k__BackingField: 3
+    <Description>k__BackingField: "\u041F\u043E\u0442\u0440\u0435\u0431\u043B\u044F\u0435\u0442
+      2 \u043A\u0443\u043A\u0443\u0440\u0443\u0437\u044B \u0432\u0437\u0430\u043C\u0435\u043D
+      \u043F\u0440\u0438\u043D\u043E\u0441\u0438\u0442 \u044F\u0439\u0446\u0430"

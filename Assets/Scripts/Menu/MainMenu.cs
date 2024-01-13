@@ -44,6 +44,8 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("Inventory");
 
         PlayerPrefs.DeleteKey("CardsInHand");
+        PlayerPrefs.DeleteKey("IndexInRotation");
+        PlayerPrefs.DeleteKey("CardsInHand");
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
