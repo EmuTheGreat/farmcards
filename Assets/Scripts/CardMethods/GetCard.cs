@@ -18,6 +18,8 @@ public class GetCard : MonoBehaviour, ISaveState
     [SerializeField]
     private PlacementSystem placementSystem;
 
+    private List<int> cardsInHand;
+
     private List<int> indexList = new List<int>() { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 3, 3, 4, 4, 4 };
 
     private bool flag = true;
@@ -71,22 +73,50 @@ public class GetCard : MonoBehaviour, ISaveState
         }
     }
 
+    private void Awake()
+    {
+        if (!PlayerPrefs.HasKey("CardsInHand"))
+        {
+            cardsInHand = new();
+        }
+        else
+        {
+            Load();
+            cardsInHand = new();
+        }
+    }
+
     private void Start()
     {
-        CreateCard(0);
-        CreateCard(0);
-        CreateCard(1);
-        CreateCard(2);
-        CreateCard(3);
+        if (!PlayerPrefs.HasKey("CardsInHand"))
+        {
+            CreateCard(0);
+            CreateCard(0);
+            CreateCard(1);
+            CreateCard(2);
+            CreateCard(3);
+        }
     }
 
     public void Save()
     {
-
+        for (int i = 0; i < parent.transform.childCount; i++)
+        {
+            var cardInfo = parent.transform.GetChild(i).GetComponent<CardInfo>();
+            cardsInHand.Add(cardInfo.objectIndex);
+        }
+        string cardsInHandString = JsonUtility.ToJson(new ListContainer<int>(cardsInHand));
+        Debug.Log(cardsInHandString);
+        PlayerPrefs.SetString("CardsInHand", cardsInHandString);
     }
 
     public void Load()
     {
-
+        string cardsInHandString = PlayerPrefs.GetString("CardsInHand");
+        ListContainer<int> cards = JsonUtility.FromJson<ListContainer<int>>(cardsInHandString);
+        foreach (var index in cards.list)
+        {
+            CreateCard(index);
+        }
     }
 }

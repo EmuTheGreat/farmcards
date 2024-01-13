@@ -14,6 +14,8 @@ public class Logic : MonoBehaviour, ISaveState
     [SerializeField]
     private InventoryManager inventoryManager;
     [SerializeField]
+    private TurnInventory turnInventory;
+    [SerializeField]
     private ObjectsDatabaseSO dataBase;
     [SerializeField]
     private PlacementSystem placementSystem;
@@ -63,6 +65,7 @@ public class Logic : MonoBehaviour, ISaveState
         interfaceManager.SetBalance(-interfaceManager.buildingsCost);
         interfaceManager.SetPaymentsMessage(paymentCost, paymentDay - interfaceManager.day);
         UpdatePaymentsParams();
+        turnInventory.UpdateSellPrice();
     }
 
     private void UpdatePaymentsParams()

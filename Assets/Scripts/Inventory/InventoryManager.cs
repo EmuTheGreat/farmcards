@@ -11,6 +11,8 @@ public class InventoryManager : MonoBehaviour, ISaveState
     public List<InventorySlot> inventorySlots = new List<InventorySlot>();
     [SerializeField]
     private ObjectsDatabaseSO dataBase;
+    [SerializeField]
+    private TurnInventory turnInventory;
 
 
     private void Awake()
@@ -76,6 +78,20 @@ public class InventoryManager : MonoBehaviour, ISaveState
                 DeleteItem(slot);
             }
         }
+        turnInventory.UpdateSellPrice();
+    }
+
+    public int ShowSellPrice()
+    {
+        int price = 0;
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            if (!slot.isEmpty)
+            {
+                price += slot.item.Price * slot.amount;
+            }
+        }
+        return price;
     }
 
     private void DeleteItem(InventorySlot slot)

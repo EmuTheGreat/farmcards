@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TurnInventory : MonoBehaviour
@@ -11,6 +12,11 @@ public class TurnInventory : MonoBehaviour
     private InputManager inputManager;
     [SerializeField]
     private IslandsPlacementSystem islandPlacement;
+    [SerializeField]
+    private InventoryManager inventoryManager; 
+    [SerializeField]
+    private TMP_Text sellPrice;
+
 
     private void Start()
     {
@@ -23,5 +29,11 @@ public class TurnInventory : MonoBehaviour
         inputManager.CancelPlace();
         buttonClicked = !buttonClicked;
         inventory.SetActive(buttonClicked);
+        UpdateSellPrice();
+    }
+
+    public void UpdateSellPrice()
+    {
+        sellPrice.text = inventoryManager.ShowSellPrice().ToString();
     }
 }

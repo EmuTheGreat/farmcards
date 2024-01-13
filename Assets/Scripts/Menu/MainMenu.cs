@@ -43,6 +43,8 @@ public class MainMenu : MonoBehaviour
 
         PlayerPrefs.DeleteKey("Inventory");
 
+        PlayerPrefs.DeleteKey("CardsInHand");
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -51,7 +53,6 @@ public class MainMenu : MonoBehaviour
         if (!PlayerPrefs.HasKey("Balance"))
         {
             buttonStartNoNew.interactable = false;
-
         }
     }
 }
